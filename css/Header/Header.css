@@ -1,0 +1,8 @@
+.Header {
+  box-sizing: border-box;
+  padding: var(--space-s) var(--space-m);
+  max-width: var(--breakpoint-size-s);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

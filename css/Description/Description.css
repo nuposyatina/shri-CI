@@ -1,0 +1,7 @@
+.Description {
+  font-size: 13px;
+  line-height: 125%;
+  font-weight: normal;
+  text-align: center;
+  color: var(--color-text-primary);
+}
