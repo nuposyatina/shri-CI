@@ -1,0 +1,4 @@
+.BuildHistory {
+  display: flex;
+  flex-direction: column;
+}

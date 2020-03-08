@@ -1,4 +1,5 @@
 .Layout {
   padding-right: var(--space-m);
   padding-left: var(--space-m);
+  padding-bottom: 84px;
 }

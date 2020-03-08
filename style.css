@@ -44,7 +44,6 @@
   padding: var(--space-s) var(--space-m);
   max-width: var(--breakpoint-size-s);
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .Input {
@@ -60,10 +59,6 @@
   line-height: 15px;
 }
 
-.Input:focus {
-  border-color: var(--color-border-focused);
-}
-
 .Input::placeholder {
   color: var(--color-text-primary);
   opacity: 0.2;
@@ -74,6 +69,7 @@
 .Layout {
   padding-right: var(--space-m);
   padding-left: var(--space-m);
+  padding-bottom: 84px;
 }
 .Text {
   margin-top: 0;
@@ -162,12 +158,18 @@
 .Form__Title {
   margin-bottom: var(--space-xs);
 }
+.Header__Button {
+  margin-right: 8px;
+}
+.Header__Title {
+  margin-right: 8px;
+}
 .Input_state_focused {
   border-color: var(--color-border-focused);
 }
 .Text_size_l {
   font-size: var(--text-size-l);
-  line-height: var(--line-height-size-l);
+  line-height: var(--line-height-size-xs);
 }
 
 .Text_size_m {
@@ -179,14 +181,27 @@
   font-size: var(--text-size-s);
   line-height: var(--line-height-size-s);
 }
+.Text_size_xl {
+  font-size: var(--text-size-xl);
+  line-height: var(--line-height-size-xl);
+}
+.Text_view_fail {
+  color: var(--color-text-fail);
+}
 .Text_view_primary {
   color: var(--color-text-primary);
 }
 
+.Text_view_progress {
+  color: var(--color-text-progress);
+}
 .Text_view_secondary {
   color: var(--color-text-secondary);
 }
 
+.Text_view_success {
+  color: var(--color-text-success);
+}
 .Theme_type_default {
   /* colors */
   --white: #ffffff;
@@ -216,6 +231,7 @@
   --color-text-secondary: var(--blue-gray-500);
   --color-text-disabled: var(--gray-700);
   --color-text-ghost: var(--gray-800);
+  --color-text-success: var(--green-500);
   --color-text-required: var(--red-500);
 
   --color-bg-primary: var(--white);
@@ -231,6 +247,7 @@
   --color-border-action-focused: var(--yellow-700);
   --color-border-focused: var(--gray-500);
   --color-border-default: var(--gray-250);
+  --color-icon-secondary: var(--gray-500);
 
   /* space */
   --space-xxs: 4px;
@@ -241,12 +258,14 @@
   /* text-size */
   --text-size-s: 13px;
   --text-size-m: 15px;
-  --text-size-l: 18px;
+  --text-size-l: 16px;
+  --text-size-xl: 18px;
 
   /* line-height */
-  --line-height-size-xs: 18px;
+  --line-height-size-xs: 16px;
   --line-height-size-s: 18px;
   --line-height-size-m: 20px;
+  --line-height-size-xl: 22px;
 
   /* breakpoints */
   --breakpoint-size-s: 320px;
@@ -276,6 +295,21 @@
 body {
   margin: 0;
 }
+.BuildCard {
+  padding: 16px 12px;
+  box-shadow: 0px 1px 1px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.BuildHistory {
+  display: flex;
+  flex-direction: column;
+}
+.Builds {
+  margin-top: 8px;
+  list-style: none;
+  padding-left: 0;
+}
 .Field {
   padding-top: var(--space-xs);
   padding-bottom: var(--space-xs);
@@ -298,6 +332,63 @@ body {
 .Title {
   margin-bottom: 0;
   margin-top: 0;
+}
+.BuildCard__Branch {
+  margin-right: 4px;
+  line-height: 16px;
+}
+.BuildCard__BuildDateTime {
+  display: flex;
+  align-items: center;
+  opacity: 0.65;
+}
+
+.BuildCard__Commit {
+  opacity: 0.65;
+}
+.BuildCard__CommitInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.BuildCard__Content {
+  position: relative;
+  padding-left: 24px;
+}
+.BuildCard__DateInfo {
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+}
+.BuildCard__Description {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.BuildCard__Git {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.BuildCard__Icon {
+  fill: var(--color-icon-secondary);
+  margin-right: 4px;
+}
+.BuildCard__Number {
+  line-height: var(--line-height-size-xs);
+  margin-bottom: 8px;
+}
+.BuildCard__Status {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.BuildCard__TimeInfo {
+  display: flex;
+  align-items: center;
+}
+.BuildCard__UserInfo {
+  display: flex;
+  align-items: center;
 }
 .Field__Button {
   position: absolute;
