@@ -1,0 +1,4 @@
+.Text_size_s {
+  font-size: var(--text-size-s);
+  line-height: var(--line-height-size-s);
+}

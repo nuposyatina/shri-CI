@@ -3,52 +3,60 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
-<body>
+<body class='Theme_type_default'>
   <header class='Header'>
-    <h1 class='PageTitle'>School CI server</h1>
+    <h1 class='Text Text_size_l Text_view_secondary Title'>School CI server</h1>
   </header>
   <main class='Layout'>
     <section class="Layout__Container">
       <form action="" class="Form Settings">
-        <h2 class="Form__Title">Settings</h2>
-        <p class="Form__Description">Configure repository connection and synchronization settings</p>
-
-        <div class="Field Form__Field">
-          <label for="repository" class="Field__Label">GitHub repository <span class='Field__Required'>*</span></label>
-          <input class="Field__Control" id='repository' type="text" placeholder="user-name/repo-name">
+        <div class="Form__Header">
+          <h2 class="Title Form__Title Text Text_size_m Text_view_primary">Settings</h2>
+          <p class="Form__Description Text Text_size_s Text_view_secondary">Configure repository connection and synchronization settings</p>
         </div>
 
-        <div class="Field Form__Field">
-          <label for="command" class="Field__Label">Build command</label>
-          <input class="Field__Control" id='command' type="text" value='npm ci && npm run build'>
-          <button class="Button Button_type_clear"><i class="Button__Icon"></i></button>
+        <div class="Form__Content">
+          <div class="Field Form__Field">
+            <label for="repository" class="Field__Label Text Text_size_s Text_view_primary">GitHub repository <span class='Field__Required'>*</span></label>
+            <input class="Input Field__Control" id='repository' type="text" placeholder="user-name/repo-name">
+          </div>
+  
+          <div class="Field Form__Field">
+            <label for="command" class="Field__Label Text Text_size_s Text_view_primary">Build command</label>
+            <input class="Input Field__Control" id='command' type="text" value='npm ci && npm run build'>
+            <button class="Button Button_role_clear Field__Button"><img class="Button__Icon" src='./img/Vector.svg'></button>
+          </div>
+  
+          <div class="Field Form__Field">
+            <label for="branch" class="Field__Label Text Text_size_s Text_view_primary">Main Branch</label>
+            <input class="Input Input_state_focused Field__Control" id='branch' type="text" value='master'>
+            <button class="Button Button_role_clear Field__Button"><img class="Button__Icon" src='./img/Vector.svg'></button>
+          </div>
+  
+          <div class="Field Form__Field Field_align_line">
+            <label for="synctime" class="Field__Label Text Text_size_s Text_view_primary">Synchronize every</label>
+            <input class="Input Field__Control" id='synctime' type="number" value='10'>
+            <span class="Field__Measure Text Text_size_s">minutes</span>
+          </div>
         </div>
 
-        <div class="Field Form__Field">
-          <label for="branch" class="Field__Label">Main Branch</label>
-          <input class="Field__Control" id='branch' type="text" value='master'>
-          <button class="Button Button_type_clear"><i class="Button__Icon"></i></button>
-        </div>
-
-        <div class="Field Form__Field">
-          <label for="synctime" class="Field__Label">Synchronize every</label>
-          <input class="Field__Control" id='synctime' type="number" value='10'>
-          <label for="synctime" class="Field__Label">minutes</label>
-        </div>
-
-        <div class="Buttons">
-          <button class="Button" type='submit'>Save</button>
-          <button class="Button">Cancel</button>
+        <div class="Form__Action">
+          <button class="Button Button_type_action Button_size_m Form__SubmitButton" type='submit'>Save</button>
+          <button class="Button Button_type_default Button_size_m">Cancel</button>
         </div>
       </form>
     </section>
   </main>
   <footer class='Footer'>
-    <a href="" class="Footer__Link">Support</a>
-    <a href="" class="Footer__Link">Learning</a>
-    <div class="Footer__Copyright">© 2020 Your Name</div>
+    <div class="Footer__Links">
+      <a href="" class="Footer__Link Text Text_size_s Text_view_secondary">Support</a>
+      <a href="" class="Footer__Link Text Text_size_s Text_view_secondary">Learning</a>
+    </div>
+    <div class="Footer__Copyright Text Text_size_s Text_view_secondary">© 2020 Your Name</div>
   </footer>
 </body>
 </html>

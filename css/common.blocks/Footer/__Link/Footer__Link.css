@@ -1,0 +1,4 @@
+.Footer__Link {
+  margin-right: var(--space-s);
+  text-decoration: none;
+}

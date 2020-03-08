@@ -1,0 +1,13 @@
+.Field_align_line {
+  display: flex;
+  align-items: center;
+}
+
+.Field_align_line .Field__Label {
+  margin-right: var(--space-xs);
+}
+
+.Field_align_line .Field__Control {
+  margin-right: var(--space-xs);
+  width: 52px;
+}

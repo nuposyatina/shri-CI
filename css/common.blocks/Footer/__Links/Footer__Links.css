@@ -1,0 +1,4 @@
+.Footer__Links {
+  display: flex;
+  margin-bottom: var(--space-xs);
+}

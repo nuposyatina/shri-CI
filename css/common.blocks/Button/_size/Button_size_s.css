@@ -1,0 +1,11 @@
+.Button_size_s {
+  height: 28px;
+}
+
+.Button_size_s .Button_type_action {
+  line-height: 36px;
+}
+
+.Button_size_s .Button_type_default {
+  line-height: 36px;
+}
