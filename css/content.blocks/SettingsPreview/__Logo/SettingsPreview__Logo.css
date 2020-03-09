@@ -1,3 +1,4 @@
 .SettingsPreview__Logo {
   margin-bottom: var(--space-2xl);
+  fill: var(--color-icon-logo);
 }

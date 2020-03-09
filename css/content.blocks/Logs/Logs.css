@@ -9,5 +9,6 @@
   .Logs {
     margin-right: auto;
     margin-left: auto;
+    border-radius: var(--radius-l);
   }
 }

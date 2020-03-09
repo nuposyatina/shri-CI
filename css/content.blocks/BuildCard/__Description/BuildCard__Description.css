@@ -6,5 +6,9 @@
 @media (min-width: 900px) {
   .BuildCard__Description {
     margin-bottom: 0;
+    max-width: 580px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }

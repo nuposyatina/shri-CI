@@ -41,14 +41,17 @@
   --color-bg-disabled: var(--gray-50);
   --color-bg-action: var(--yellow-500);
   --color-bg-action-hovered: var(--yellow-600);
-  --color-bg-close-icon: var(--gray-400);
   --color-bg-code: var(--gray-50);
 
   --color-border-action: var(--yellow-500);
   --color-border-action-focused: var(--yellow-700);
   --color-border-default: var(--gray-250);
   --color-border-focused: var(--gray-500);
+
+  --color-icon-primary: var(--gray-900);
   --color-icon-secondary: var(--gray-500);
+  --color-icon-logo: var(--gray-100);
+  --color-icon-close: var(--gray-400);
 
   /* space */
   --space-8xs: 4px;

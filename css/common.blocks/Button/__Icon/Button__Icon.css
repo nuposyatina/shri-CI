@@ -1,5 +1,6 @@
 .Button__Icon {
-  padding: var(--space-6xs);
-  display: flex;
-  box-sizing: border-box;
+  padding-left: var(--space-6xs);
+  padding-right: var(--space-6xs);
+  /* display: flex; */
+  /* box-sizing: border-box; */
 }

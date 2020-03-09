@@ -1,0 +1,5 @@
+@media (min-width: 900px) {
+  .BuildCard_status_details .BuildCard__BuildDateTime {
+    opacity: 1;
+  }
+}

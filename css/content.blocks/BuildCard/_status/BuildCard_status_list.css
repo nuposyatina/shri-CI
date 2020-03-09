@@ -1,0 +1,21 @@
+@media (min-width: 900px) {
+  .BuildCard_status_list .BuildCard__BuildDateTime {
+    flex-direction: column;
+  }
+
+  .BuildCard_status_list .BuildCard__Content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .BuildCard_status_list .BuildCard__DateInfo {
+    margin-bottom: var(--space-3xs);
+    margin-right: 0;
+  }
+
+  .BuildCard_status_list .BuildCard__Git {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}

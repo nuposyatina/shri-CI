@@ -5,11 +5,7 @@
 }
 
 @media (min-width: 900px) {
-  /* .BuildCard__BuildDateTime {
-    flex-direction: column;
-  } */
-
-  .BuildCard_status_list .BuildCard__BuildDateTime {
-    flex-direction: column;
+  .BuildCard__BuildDateTime {
+    align-items: flex-start;
   }
 }

@@ -7,9 +7,4 @@
   .BuildCard__Content {
     padding-left: var(--space-2xl);
   }
-
-  .BuildCard_status_list .BuildCard__Content {
-    display: flex;
-    justify-content: space-between;
-  }
 }
