@@ -17,3 +17,8 @@
   font-size: var(--text-size-s);
   line-height: var(--line-height-size-2xs);
 }
+
+.Input:focus {
+  outline: none;
+  border-color: var(--color-border-focused);
+}

@@ -15,7 +15,7 @@
   --blue-gray-500: #7f8285;/*color-bg-secondary*/
   --blue-gray-50: #f0f2f3;
   --yellow-700: #b09105;
-  --yellow-600: #eec50a;
+  --yellow-600: #eec40a;
   --yellow-500: #fbcf0b; /*color-bg-action*/
   --orange-500: #F99C13;
   --red-500: #f6333a;
@@ -32,20 +32,22 @@
   --color-text-fail: var(--red-500);
   --color-text-required: var(--red-500);
 
+  --color-link-hovered: var(--red-600);
+
   --color-bg-primary: var(--white);
   --color-bg-secondary: var(--blue-gray-50);
   --color-bg-control: var(--gray-150);
   --color-bg-control-hovered: var(--gray-200);
   --color-bg-disabled: var(--gray-50);
-  --color-border-default: var(--gray-250);
   --color-bg-action: var(--yellow-500);
   --color-bg-action-hovered: var(--yellow-600);
   --color-bg-close-icon: var(--gray-400);
   --color-bg-code: var(--gray-50);
 
+  --color-border-action: var(--yellow-500);
   --color-border-action-focused: var(--yellow-700);
-  --color-border-focused: var(--gray-500);
   --color-border-default: var(--gray-250);
+  --color-border-focused: var(--gray-500);
   --color-icon-secondary: var(--gray-500);
 
   /* space */
@@ -91,10 +93,11 @@
   /* border-radius */
   --radius-s: 2px;
   --radius-m: 4px;
-  --radius-m: 6px;
+  --radius-l: 6px;
 
   /* box-shadow */
   --build-card-shadow-default: 0px 1px 1px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  --build-card-shadow-hovered: 0px 2px 8px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
 
   /* fonts */
   --font-family: 'YS Text';

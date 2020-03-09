@@ -2,3 +2,7 @@
   margin-right: var(--space-s);
   text-decoration: none;
 }
+
+.Footer__Link:hover {
+  color: var(--color-link-hovered);
+}

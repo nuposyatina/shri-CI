@@ -1,6 +1,22 @@
 .Button_view_submit {
   background-color: var(--color-bg-action);
   color: var(--color-text-primary);
-  border-color: var(--color-bg-action);
+  border: 2px solid var(--color-bg-action);
   font-size: var(--text-size-s);
+}
+
+.Button_view_submit:hover {
+  background-color: var(--color-bg-action-hovered);
+  border: 2px solid var(--color-bg-action-hovered);
+}
+
+.Button_view_submit:focus {
+  outline: none;
+  background-color: var(--color-bg-action);
+  border: 2px solid var(--color-border-action-focused);
+}
+
+.Button_view_submit:disabled {
+  background-color: var(--color-bg-disabled);
+  border: 2px solid var(--color-bg-disabled);
 }

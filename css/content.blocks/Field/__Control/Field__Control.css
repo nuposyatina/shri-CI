@@ -1,0 +1,3 @@
+.Field__Control:placeholder-shown + .Field__Button {
+  display: none;
+}

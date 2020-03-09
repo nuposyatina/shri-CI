@@ -1,6 +1,22 @@
 .Button_view_default {
   background-color: var(--color-bg-control);
   color: var(--color-text-primary);
-  border-color: var(--color-bg-control);
+  border: 2px solid var(--color-bg-control);
   font-size: var(--text-size-s);
+}
+
+.Button_view_default:hover {
+  background-color: var(--color-bg-control-hovered);
+  border: 2px solid var(--color-bg-control-hovered);
+}
+
+.Button_view_default:focus {
+  outline: none;
+  background-color: var(--color-bg-control);
+  border: 2px solid var(--color-border-focused);
+}
+
+.Button_view_default:disabled {
+  background-color: var(--color-bg-disabled);
+  border: 2px solid var(--color-bg-disabled);
 }
