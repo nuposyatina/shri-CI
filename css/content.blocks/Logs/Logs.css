@@ -1,0 +1,4 @@
+.Logs {
+  overflow: auto;
+  background-color: var(--color-bg-code);
+}

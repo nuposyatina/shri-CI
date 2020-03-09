@@ -6,7 +6,16 @@
   right: 0;
   box-sizing: border-box;
   padding: var(--space-s) var(--space-m);
-  max-width: var(--breakpoint-size-s);
-  display: flex;
-  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .Footer {
+    padding: 12px 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .Footer {
+    padding: 6px 100px;
+  }
 }

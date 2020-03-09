@@ -1,0 +1,5 @@
+.Button__Icon {
+  padding: 8px;
+  display: flex;
+  box-sizing: border-box;
+}

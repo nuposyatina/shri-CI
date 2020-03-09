@@ -39,6 +39,7 @@
   --color-bg-action: var(--yellow-500);
   --color-bg-action-hovered: var(--yellow-600);
   --color-bg-close-icon: var(--gray-400);
+  --color-bg-code: var(--gray-50);
 
   --color-border-action-focused: var(--yellow-700);
   --color-border-focused: var(--gray-500);

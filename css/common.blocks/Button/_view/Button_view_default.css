@@ -1,0 +1,6 @@
+.Button_view_default {
+  background-color: var(--color-bg-control);
+  color: var(--color-text-primary);
+  border-color: var(--color-bg-control);
+  font-size: 13px;
+}

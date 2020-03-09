@@ -22,8 +22,8 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-xs);
+  /* justify-content: center; */
+  /* padding: var(--space-xs); */
   border-radius: var(--radius-m);
   text-decoration: none;
 }
@@ -35,16 +35,34 @@
   right: 0;
   box-sizing: border-box;
   padding: var(--space-s) var(--space-m);
-  max-width: var(--breakpoint-size-s);
-  display: flex;
-  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .Footer {
+    padding: 12px 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .Footer {
+    padding: 6px 100px;
+  }
 }
 .Header {
   box-sizing: border-box;
   padding: var(--space-s) var(--space-m);
-  max-width: var(--breakpoint-size-s);
-  display: flex;
-  justify-content: space-between;
+}
+
+@media (min-width: 600px) {
+  .Header {
+    padding: 15px 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .Header {
+    padding: 10px 100px;
+  }
 }
 .Input {
   width: 100%;
@@ -67,16 +85,16 @@
 }
 
 .Layout {
-  padding-right: var(--space-m);
-  padding-left: var(--space-m);
   padding-bottom: 84px;
 }
 .Text {
   margin-top: 0;
   margin-bottom: 0;
 }
-.Button_role_build .Button__Text {
-  display: none;
+.Button__Icon {
+  padding: 8px;
+  display: flex;
+  box-sizing: border-box;
 }
 .Button_role_clear {
   height: 36px;
@@ -85,58 +103,87 @@
   border: none;
 }
 
-.Button_role_rebuild .Button__Text {
-  display: none;
-}
-.Button_role_settings .Button__Text {
-  display: none;
-}
 .Button_size_m {
   height: 36px;
 }
 
-.Button_size_m .Button_type_action {
+.Button_size_m .Button_view_submit {
   line-height: 36px;
 }
 
-.Button_size_m .Button_type_default {
+.Button_size_m .Button_view_default {
   line-height: 36px;
 }
 .Button_size_s {
   height: 28px;
 }
 
-.Button_size_s .Button_type_action {
+.Button_size_s .Button_view_submit {
   line-height: 36px;
 }
 
-.Button_size_s .Button_type_default {
+.Button_size_s .Button_view_default {
   line-height: 36px;
 }
-.Button_type_action {
-  background-color: var(--color-bg-action);
-  color: var(--color-text-primary);
-  border-color: var(--color-bg-action);
-  font-size: 13px;
+.Button_type_action .Button__Text {
+  margin-right: 13px;
+  margin-left: -3px;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .Button_type_action.Button_textVisible .Button__Text {
+    display: block;
+  }
 }
 .Button_type_default {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.Button_view_default {
   background-color: var(--color-bg-control);
   color: var(--color-text-primary);
   border-color: var(--color-bg-control);
   font-size: 13px;
 }
+.Button_view_submit {
+  background-color: var(--color-bg-action);
+  color: var(--color-text-primary);
+  border-color: var(--color-bg-action);
+  font-size: 13px;
+}
 .Button_width_full {
   width: 100%;
 }
+.Footer__Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .Footer__Content {
+    max-width: 825px;
+    flex-direction: row;
+  }
+}
+
 .Footer__Link {
   margin-right: var(--space-s);
   text-decoration: none;
 }
+
 .Footer__Links {
   display: flex;
   margin-bottom: var(--space-xs);
 }
 
+@media (min-width: 900px) {
+  .Footer__Links {
+    margin-bottom: 0;
+  }
+}
 .Form__Action {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -161,11 +208,26 @@
 .Header__Button {
   margin-right: 8px;
 }
+.Header__Content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .Header__Content {
+    max-width: 825px;
+  }
+}
 .Header__Title {
   margin-right: 8px;
 }
 .Input_state_focused {
   border-color: var(--color-border-focused);
+}
+.Layout__Container {
+  margin-right: var(--space-m);
+  margin-left: var(--space-m);
 }
 .Text_size_l {
   font-size: var(--text-size-l);
@@ -243,6 +305,7 @@
   --color-bg-action: var(--yellow-500);
   --color-bg-action-hovered: var(--yellow-600);
   --color-bg-close-icon: var(--gray-400);
+  --color-bg-code: var(--gray-50);
 
   --color-border-action-focused: var(--yellow-700);
   --color-border-focused: var(--gray-500);
@@ -320,6 +383,10 @@ body {
   width: 124px;
   height: 124px;
 }
+.Logs {
+  overflow: auto;
+  background-color: var(--color-bg-code);
+}
 .Settings {
   margin-top: 14px;
 }
@@ -329,6 +396,13 @@ body {
   align-items: center;
   margin-top: 94px;
 }
+
+@media (min-width: 900px) {
+  .SettingsPreview {
+    margin-top: 206px;
+  }
+}
+
 .Title {
   margin-bottom: 0;
   margin-top: 0;

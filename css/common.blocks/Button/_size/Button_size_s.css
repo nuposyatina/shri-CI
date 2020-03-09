@@ -2,10 +2,10 @@
   height: 28px;
 }
 
-.Button_size_s .Button_type_action {
+.Button_size_s .Button_view_submit {
   line-height: 36px;
 }
 
-.Button_size_s .Button_type_default {
+.Button_size_s .Button_view_default {
   line-height: 36px;
 }

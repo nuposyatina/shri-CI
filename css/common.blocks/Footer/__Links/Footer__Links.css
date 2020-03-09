@@ -2,3 +2,9 @@
   display: flex;
   margin-bottom: var(--space-xs);
 }
+
+@media (min-width: 900px) {
+  .Footer__Links {
+    margin-bottom: 0;
+  }
+}

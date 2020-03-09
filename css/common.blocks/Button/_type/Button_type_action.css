@@ -1,6 +1,11 @@
-.Button_type_action {
-  background-color: var(--color-bg-action);
-  color: var(--color-text-primary);
-  border-color: var(--color-bg-action);
-  font-size: 13px;
+.Button_type_action .Button__Text {
+  margin-right: 13px;
+  margin-left: -3px;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .Button_type_action.Button_textVisible .Button__Text {
+    display: block;
+  }
 }

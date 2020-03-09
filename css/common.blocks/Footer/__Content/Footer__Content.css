@@ -1,0 +1,13 @@
+.Footer__Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .Footer__Content {
+    max-width: 825px;
+    flex-direction: row;
+  }
+}

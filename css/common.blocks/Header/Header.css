@@ -1,7 +1,16 @@
 .Header {
   box-sizing: border-box;
   padding: var(--space-s) var(--space-m);
-  max-width: var(--breakpoint-size-s);
-  display: flex;
-  justify-content: space-between;
+}
+
+@media (min-width: 600px) {
+  .Header {
+    padding: 15px 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .Header {
+    padding: 10px 100px;
+  }
 }

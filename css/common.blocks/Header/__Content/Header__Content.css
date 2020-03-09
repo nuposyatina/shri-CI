@@ -1,0 +1,11 @@
+.Header__Content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .Header__Content {
+    max-width: 825px;
+  }
+}
