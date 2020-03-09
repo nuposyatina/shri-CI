@@ -1,0 +1,3 @@
+.BuildCard__Status_status_success {
+  fill: var(--color-text-success);
+}

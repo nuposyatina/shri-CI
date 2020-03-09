@@ -3,3 +3,10 @@
   top: 0;
   left: 0;
 }
+
+@media (min-width: 900px) {
+  .BuildCard__Status {
+    width: 22px;
+    height: 22px;
+  }
+}

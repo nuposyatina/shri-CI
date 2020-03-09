@@ -1,4 +1,13 @@
 .Logs {
   overflow: auto;
   background-color: var(--color-bg-code);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 900px) {
+  .Logs {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -2,3 +2,10 @@
   line-height: var(--line-height-size-xs);
   margin-bottom: 8px;
 }
+
+@media (min-width: 900px) {
+  .BuildCard__Number {
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
+}

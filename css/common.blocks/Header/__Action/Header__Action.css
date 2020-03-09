@@ -1,0 +1,4 @@
+.Header__Action {
+  display: flex;
+  flex-shrink: 0;
+}

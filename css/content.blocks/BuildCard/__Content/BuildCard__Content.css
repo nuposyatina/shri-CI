@@ -2,3 +2,14 @@
   position: relative;
   padding-left: 24px;
 }
+
+@media (min-width: 900px) {
+  .BuildCard__Content {
+    padding-left: 32px;
+  }
+
+  .BuildCard_status_list .BuildCard__Content {
+    display: flex;
+    justify-content: space-between;
+  }
+}

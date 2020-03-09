@@ -18,7 +18,7 @@
   --yellow-600: #eec50a;
   --yellow-500: #fbcf0b; /*color-bg-action*/
   --orange-500: #F99C13;
-  --red-500: #f7333a;
+  --red-500: #f6333a;
   --red-600: #d80015;
   --green-500: #33b53e;
 
@@ -28,6 +28,8 @@
   --color-text-disabled: var(--gray-700);
   --color-text-ghost: var(--gray-800);
   --color-text-success: var(--green-500);
+  --color-text-progress: var(--orange-500);
+  --color-text-fail: var(--red-500);
   --color-text-required: var(--red-500);
 
   --color-bg-primary: var(--white);
@@ -57,12 +59,14 @@
   --text-size-m: 15px;
   --text-size-l: 16px;
   --text-size-xl: 18px;
+  --text-size-xxl: 24px;
 
   /* line-height */
   --line-height-size-xs: 16px;
   --line-height-size-s: 18px;
   --line-height-size-m: 20px;
   --line-height-size-xl: 22px;
+  --line-height-size-xxl: 28px;
 
   /* breakpoints */
   --breakpoint-size-s: 320px;

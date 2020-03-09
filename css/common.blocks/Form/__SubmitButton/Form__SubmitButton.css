@@ -1,3 +1,10 @@
 .Form__SubmitButton {
   margin-bottom: 12px;
 }
+
+@media (min-width: 600px) {
+  .Form__SubmitButton {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+}

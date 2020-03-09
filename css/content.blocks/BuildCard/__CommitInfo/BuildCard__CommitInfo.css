@@ -3,3 +3,10 @@
   align-items: center;
   margin-bottom: 8px;
 }
+
+@media (min-width: 900px) {
+  .BuildCard__CommitInfo {
+    margin-bottom: 0;
+    margin-right: 10px;
+  };
+}

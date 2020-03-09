@@ -2,3 +2,10 @@
   font-size: var(--text-size-xl);
   line-height: var(--line-height-size-xl);
 }
+
+@media (min-width: 900px) {
+  .Text_size_xl {
+    font-size: var(--text-size-xxl);
+    line-height: var(--line-height-size-xxl);
+  }
+}

@@ -3,3 +3,13 @@
   align-items: center;
   opacity: 0.65;
 }
+
+@media (min-width: 900px) {
+  /* .BuildCard__BuildDateTime {
+    flex-direction: column;
+  } */
+
+  .BuildCard_status_list .BuildCard__BuildDateTime {
+    flex-direction: column;
+  }
+}

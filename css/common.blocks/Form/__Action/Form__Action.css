@@ -1,6 +1,14 @@
 .Form__Action {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .Form__Action {
+    flex-direction: row;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
 }

@@ -1,0 +1,3 @@
+.BuildCard__Status_status_fail {
+  fill: var(--color-text-fail);
+}

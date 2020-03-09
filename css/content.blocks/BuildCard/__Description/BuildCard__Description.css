@@ -2,3 +2,9 @@
   margin-top: 0;
   margin-bottom: 8px;
 }
+
+@media (min-width: 900px) {
+  .BuildCard__Description {
+    margin-bottom: 0;
+  }
+}

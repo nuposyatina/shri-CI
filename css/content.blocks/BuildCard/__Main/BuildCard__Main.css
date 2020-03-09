@@ -1,0 +1,13 @@
+.BuildCard__Main {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .BuildCard__Main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+  };
+}

@@ -4,3 +4,13 @@
   border-radius: 6px;
   margin-bottom: 8px;
 }
+
+.BuildCard:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .BuildCard {
+    padding: 12px 24px;
+  }
+}
