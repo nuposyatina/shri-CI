@@ -1,6 +1,6 @@
 .BuildCard__Description {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-6xs);
 }
 
 @media (min-width: 900px) {

@@ -1,8 +1,8 @@
 .BuildCard__Git {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-6xs);
   display: flex;
   flex-direction: column;
-  padding-bottom: 8px;
+  padding-bottom: var(--space-6xs);
   border-bottom: 1px solid #f1f2f3;
 }
 

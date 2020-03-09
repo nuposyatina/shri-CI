@@ -1,12 +1,12 @@
 .BuildCard__CommitInfo {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-6xs);
 }
 
 @media (min-width: 900px) {
   .BuildCard__CommitInfo {
     margin-bottom: 0;
-    margin-right: 10px;
+    margin-right: var(--space-5xs);
   };
 }

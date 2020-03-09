@@ -1,11 +1,12 @@
 .Settings {
-  margin-top: 14px;
-  max-width: 474px;
+  margin-top: var(--space-xs);
 }
 
 @media (min-width: 900px) {
   .Settings {
-    margin-top: 8px;
+    margin-top: var(--space-6xs);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

@@ -1,4 +1,4 @@
 .BuildCard__Icon {
   fill: var(--color-icon-secondary);
-  margin-right: 4px;
+  margin-right: var(--space-8xs);
 }

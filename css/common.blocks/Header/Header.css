@@ -5,12 +5,12 @@
 
 @media (min-width: 600px) {
   .Header {
-    padding: 15px 50px;
+    padding: var(--space-s) var(--space-3xl);
   }
 }
 
 @media (min-width: 900px) {
   .Header {
-    padding: 10px 100px;
+    padding: var(--space-5xs) var(--space-6xl);
   }
 }

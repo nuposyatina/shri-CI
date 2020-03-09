@@ -1,5 +1,5 @@
 .Button_type_action .Button__Text {
-  margin-right: 13px;
+  margin-right: var(--space-2xs);
   margin-left: -3px;
   display: none;
 }

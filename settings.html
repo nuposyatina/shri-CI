@@ -3,61 +3,63 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <link rel='stylesheet' href='css/fonts.css'>
+  <link rel='stylesheet' href='style.css'>
+  <title>Settings</title>
 </head>
 <body class='Theme_type_default'>
   <header class='Header'>
-    <h1 class='Text Text_size_xl Text_view_secondary Title'>School CI server</h1>
+    <div class='Header__Content'>
+      <h1 class='Text Text_size_xl Text_view_secondary Title'>School CI server</h1>
+    </div>
   </header>
   <main class='Layout'>
-    <section class="Layout__Container">
-      <form action="" class="Form Settings">
-        <div class="Form__Header">
-          <h2 class="Title Form__Title Text Text_size_m Text_view_primary">Settings</h2>
-          <p class="Form__Description Text Text_size_s Text_view_secondary">Configure repository connection and synchronization settings</p>
+    <section class='Layout__Container Settings'>
+      <form action='' class='Form'>
+        <div class='Form__Header'>
+          <h2 class='Title Form__Title Text Text_size_m Text_view_primary'>Settings</h2>
+          <p class='Form__Description Text Text_size_s Text_view_secondary'>Configure repository connection and synchronization settings</p>
         </div>
 
-        <div class="Form__Content">
-          <div class="Field Form__Field">
-            <label for="repository" class="Field__Label Text Text_size_s Text_view_primary">GitHub repository <span class='Field__Required'>*</span></label>
-            <input class="Input Field__Control" id='repository' type="text" placeholder="user-name/repo-name">
+        <div class='Form__Content'>
+          <div class='Field Form__Field'>
+            <label for='repository' class='Field__Label Text Text_size_s Text_view_primary'>GitHub repository <span class='Field__Required'>*</span></label>
+            <input class='Input Field__Control' id='repository' type='text' placeholder='user-name/repo-name'>
           </div>
   
-          <div class="Field Form__Field">
-            <label for="command" class="Field__Label Text Text_size_s Text_view_primary">Build command</label>
-            <input class="Input Field__Control" id='command' type="text" value='npm ci && npm run build'>
-            <button class="Button Button_role_clear Field__Button"><img class="Button__Icon" src='./img/Vector.svg'></button>
+          <div class='Field Form__Field'>
+            <label for='command' class='Field__Label Text Text_size_s Text_view_primary'>Build command</label>
+            <input class='Input Field__Control' id='command' type='text' value='npm ci && npm run build'>
+            <button class='Button Button_role_clear Field__Button'><img class='Button__Icon' src='./img/Vector.svg'></button>
           </div>
   
-          <div class="Field Form__Field">
-            <label for="branch" class="Field__Label Text Text_size_s Text_view_primary">Main Branch</label>
-            <input class="Input Input_state_focused Field__Control" id='branch' type="text" value='master'>
-            <button class="Button Button_role_clear Field__Button"><img class="Button__Icon" src='./img/Vector.svg'></button>
+          <div class='Field Form__Field'>
+            <label for='branch' class='Field__Label Text Text_size_s Text_view_primary'>Main Branch</label>
+            <input class='Input Input_state_focused Field__Control' id='branch' type='text' value='master'>
+            <button class='Button Button_role_clear Field__Button'><img class='Button__Icon' src='./img/Vector.svg'></button>
           </div>
   
-          <div class="Field Form__Field Field_align_line Settings__SyncTimeField">
-            <label for="synctime" class="Field__Label Text Text_size_s Text_view_primary">Synchronize every</label>
-            <input class="Input Field__Control" id='synctime' type="number" value='10'>
-            <span class="Field__Measure Text Text_size_s">minutes</span>
+          <div class='Field Form__Field Field_align_line Settings__SyncTimeField'>
+            <label for='synctime' class='Field__Label Text Text_size_s Text_view_primary'>Synchronize every</label>
+            <input class='Input Field__Control' id='synctime' type='number' value='10'>
+            <span class='Field__Measure Text Text_size_s'>minutes</span>
           </div>
         </div>
 
-        <div class="Form__Action">
-          <button class="Button Button_view_submit Button_size_m Form__SubmitButton Button_type_default" type='submit'>Save</button>
-          <button class="Button Button_view_default Button_size_m Button_type_default">Cancel</button>
+        <div class='Form__Action'>
+          <button class='Button Button_view_submit Button_size_m Form__SubmitButton Button_type_default' type='submit'>Save</button>
+          <button class='Button Button_view_default Button_size_m Button_type_default'>Cancel</button>
         </div>
       </form>
     </section>
   </main>
   <footer class='Footer'>
-    <div class="Footer__Content">
-      <div class="Footer__Links">
-        <a href="" class="Footer__Link Text Text_size_s Text_view_secondary">Support</a>
-        <a href="" class="Footer__Link Text Text_size_s Text_view_secondary">Learning</a>
+    <div class='Footer__Content'>
+      <div class='Footer__Links'>
+        <a href='' class='Footer__Link Text Text_size_s Text_view_secondary'>Support</a>
+        <a href='' class='Footer__Link Text Text_size_s Text_view_secondary'>Learning</a>
       </div>
-      <div class="Footer__Copyright Text Text_size_s Text_view_secondary">© 2020 Your Name</div>
+      <div class='Footer__Copyright Text Text_size_s Text_view_secondary'>© 2020 Your Name</div>
     </div>
   </footer>
 </body>

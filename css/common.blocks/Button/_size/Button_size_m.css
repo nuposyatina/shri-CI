@@ -3,9 +3,9 @@
 }
 
 .Button_size_m .Button_view_submit {
-  line-height: 36px;
+  line-height: var(--line-height-size-3xl);
 }
 
 .Button_size_m .Button_view_default {
-  line-height: 36px;
+  line-height: var(--line-height-size-3xl);
 }

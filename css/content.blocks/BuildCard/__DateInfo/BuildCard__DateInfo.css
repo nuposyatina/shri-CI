@@ -1,12 +1,12 @@
 .BuildCard__DateInfo {
   display: flex;
   align-items: center;
-  margin-right: 4px;
+  margin-right: var(--space-8xs);
 }
 
 @media (min-width: 900px) {
   .BuildCard_status_list .BuildCard__DateInfo {
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3xs);
     margin-right: 0;
   };
 }

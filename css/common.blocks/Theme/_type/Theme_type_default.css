@@ -49,10 +49,24 @@
   --color-icon-secondary: var(--gray-500);
 
   /* space */
-  --space-xxs: 4px;
-  --space-xs: 8px;
-  --space-s: 12px;
+  --space-8xs: 4px;
+  --space-7xs: 6px;
+  --space-6xs: 8px;
+  --space-5xs: 10px;
+  --space-4xs: 11px;
+  --space-3xs: 12px;
+  --space-2xs: 13px;
+  --space-xs: 14px;
+  --space-s: 15px;
   --space-m: 16px;
+  --space-l: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 50px;
+  --space-4xl: 84px;
+  --space-5xl: 94px;
+  --space-6xl: 100px;
+  --space-7xl: 206px;
 
   /* text-size */
   --text-size-s: 13px;
@@ -62,35 +76,30 @@
   --text-size-xxl: 24px;
 
   /* line-height */
+  --line-height-size-2xs: 15px;
   --line-height-size-xs: 16px;
   --line-height-size-s: 18px;
   --line-height-size-m: 20px;
   --line-height-size-xl: 22px;
   --line-height-size-xxl: 28px;
+  --line-height-size-3xl: 36px;
 
   /* breakpoints */
-  --breakpoint-size-s: 320px;
   --content-size: 474px;
+  --container-size: 825px;
 
   /* border-radius */
   --radius-s: 2px;
   --radius-m: 4px;
+  --radius-m: 6px;
+
+  /* box-shadow */
+  --build-card-shadow-default: 0px 1px 1px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
 
   /* fonts */
   --font-family: 'YS Text';
 
   font-family: var(--font-family);
-
-
-  /* --settings-button: #e6e6e6;
-  --icon: #E5E5E5;
-  --footer: #F0F2F3;
-  --open-settings: #FBCF0B;
-  --success: #5ECC78;
-  --fail: #F77073;
-  --progress: #FABA4F;
-  --show-more: #EDEDED;
-  --show-more-mobile: #E6E6E6; */
 }
 
 body {

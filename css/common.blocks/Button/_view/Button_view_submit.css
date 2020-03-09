@@ -2,5 +2,5 @@
   background-color: var(--color-bg-action);
   color: var(--color-text-primary);
   border-color: var(--color-bg-action);
-  font-size: 13px;
+  font-size: var(--text-size-s);
 }

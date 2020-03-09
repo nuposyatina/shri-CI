@@ -1,6 +1,6 @@
 .Builds {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: var(--space-6xs);
+  margin-bottom: var(--space-6xs);
   list-style: none;
   padding-left: 0;
   display: flex;

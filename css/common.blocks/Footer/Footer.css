@@ -10,12 +10,12 @@
 
 @media (min-width: 600px) {
   .Footer {
-    padding: 12px 50px;
+    padding: var(--space-3xs) var(--space-3xl);
   }
 }
 
 @media (min-width: 900px) {
   .Footer {
-    padding: 6px 100px;
+    padding: var(--space-7xs) var(--space-6xl);
   }
 }

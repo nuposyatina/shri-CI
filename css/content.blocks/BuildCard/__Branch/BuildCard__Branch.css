@@ -1,4 +1,4 @@
 .BuildCard__Branch {
-  margin-right: 4px;
-  line-height: 16px;
+  margin-right: var(--space-8xs);
+  line-height: var(--space-m);
 }

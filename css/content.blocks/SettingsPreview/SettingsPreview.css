@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 94px;
+  margin-top: var(--space-5xl);
 }
 
 @media (min-width: 900px) {
   .SettingsPreview {
-    margin-top: 206px;
+    margin-top: var(--space-7xl);
+    margin-left: auto;
+    margin-right: auto;
   }
 }

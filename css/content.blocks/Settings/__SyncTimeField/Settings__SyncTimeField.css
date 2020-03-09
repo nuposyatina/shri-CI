@@ -1,4 +1,4 @@
 .Settings__SyncTimeField {
-  margin-top: 8px;
-  margin-bottom: 12px;
+  margin-top: var(--space-6xs);
+  margin-bottom: var(--space-3xs);
 }

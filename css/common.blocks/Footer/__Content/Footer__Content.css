@@ -7,7 +7,7 @@
 
 @media (min-width: 900px) {
   .Footer__Content {
-    max-width: 825px;
+    max-width: var(--container-size);
     flex-direction: row;
   }
 }

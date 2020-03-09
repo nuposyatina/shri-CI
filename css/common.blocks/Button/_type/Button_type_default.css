@@ -1,4 +1,4 @@
 .Button_type_default {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--space-l);
+  padding-right: var(--space-l);
 }

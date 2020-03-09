@@ -1,5 +1,5 @@
 .Field {
-  padding-top: 10px;
-  padding-bottom: 8px;
+  padding-top: var(--space-5xs);
+  padding-bottom: var(--space-6xs);
   position: relative;
 }
