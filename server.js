@@ -1,22 +1,134 @@
 const express = require('express');
 const path = require('path');
+const fetch = require('node-fetch');
+const https = require('https');
+const simpleGit = require('simple-git/promise');
+const url = require('url');
 
 const app = express();
+const agent = new https.Agent({
+  rejectUnauthorized: false
+})
+const { AUTH_TOKEN } = require('dotenv').config().parsed;
 
-// app.get('/api/settings');
-
-// app.post('/api/settings');
-
-// app.get('api/builds');
-
-// app.post('/api/builds/:commitHash');
-
-// app.get('/api/builds/:buildId');
-
-// app.get('/api/builds/:buildId/log');
 app.use(express.static(path.resolve(__dirname, 'static')));
-// app.get('/', (req, res) => {
 
-// });
+app.get('/api/settings', (req, res) => {
+  fetch('https://hw.shri.yandex/api/conf', {
+    headers: { 
+      'Authorization': `Bearer ${AUTH_TOKEN}`
+    },
+    agent: agent
+  }).
+  then((result) => result.json()).
+  then((settings) => {
+    console.log(settings)
+    if (!settings.data) {
+      return res.send({});
+    }
+    return res.send(settings.data);
+  });
+});
+
+const readJSON = (req) => {
+  return new Promise((resolve, reject) => {
+    let rawBody = '';
+    req.on('data', (chunk) => rawBody += chunk);
+    req.once('end', () => {
+      try {
+        return resolve(JSON.parse(rawBody));
+      } catch(err) {
+        return reject(err);
+      }
+    });
+    req.once('error', reject);
+  });
+}
+
+app.post('/api/settings', (req, res) => {
+  // bodyParser
+  readJSON(req).
+  then(body => {
+    const { repoName } = body;
+    simpleGit().clone(`https://github.com/${repoName}`, './repo');
+    return fetch('https://hw.shri.yandex/api/conf', {
+      method: 'POST',
+      headers: { 
+        'Authorization': `Bearer ${AUTH_TOKEN}`,
+        'Content-type': 'application/json'
+      },
+      agent: agent,
+      body: JSON.stringify(body)
+    });
+  }).
+  then((result) => res.send(result));
+});
+
+app.get('/api/builds', (req, res) => {
+  const { search } = url.parse(req.originalUrl);
+  fetch(`https://hw.shri.yandex/api/build/list${search ? search : ''}`, {
+    headers: { 
+      'Authorization': `Bearer ${AUTH_TOKEN}`
+    },
+    agent: agent
+  }).
+  then(result => result.json()).
+  then(result => res.send(result));
+});
+
+app.post('/api/builds/:commitHash', (req, res) => {
+  const { commitHash } = req.params;
+  const reqBody = {
+    commitHash
+  };
+  simpleGit('./repo').show(['-s', '--format=%B', commitHash]).
+  then(log => {
+    reqBody.commitMessage = log
+    return simpleGit('./repo').show(['-s', '--format=%an', commitHash])
+  }).
+  then(log => {
+    reqBody.authorName = log
+    return simpleGit('./repo').branch(['--contains', commitHash, '-a']);
+  }).
+  then(log => {
+    reqBody.branchName = log.current
+    console.log(reqBody)
+    return fetch('https://hw.shri.yandex/api/build/request', {
+      method: 'POST',
+      headers: { 
+        'Authorization': `Bearer ${AUTH_TOKEN}`,
+        'Content-type': 'application/json'
+      },
+      agent: agent,
+      body: JSON.stringify(reqBody)
+    });
+  }).then(result => res.send(result));
+});
+
+app.get('/api/builds/:buildId/log', (req, res) => {
+  const { buildId } = req.params;
+
+  fetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {
+    headers: { 
+      'Authorization': `Bearer ${AUTH_TOKEN}`
+    },
+    agent: agent
+  }).
+  then(result => result.text()).
+  then(result => res.send(result));
+});
+
+app.get('/api/builds/:buildId', (req, res) => {
+  const { buildId } = req.params;
+
+  fetch(`https://hw.shri.yandex/api/build/details?buildId=${buildId}`, {
+    headers: { 
+      'Authorization': `Bearer ${AUTH_TOKEN}`
+    },
+    agent: agent
+  }).
+  then(result => result.json()).
+  then(result => res.send(result));
+});
 
 app.listen(3000);
