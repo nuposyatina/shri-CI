@@ -2,8 +2,11 @@ const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
 const https = require('https');
-const simpleGit = require('simple-git/promise');
 const url = require('url');
+const util = require('util');
+
+const exec = util.promisify(require('child_process').exec);
+const simpleGit = require('simple-git/promise');
 
 const app = express();
 const agent = new https.Agent({
@@ -13,7 +16,7 @@ const { AUTH_TOKEN } = require('dotenv').config().parsed;
 
 app.use(express.static(path.resolve(__dirname, 'static')));
 
-app.get('/api/settings', (req, res) => {
+app.get('/api/settings', (req, res, next) => {
   fetch('https://hw.shri.yandex/api/conf', {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`
@@ -22,12 +25,10 @@ app.get('/api/settings', (req, res) => {
   }).
   then((result) => result.json()).
   then((settings) => {
-    console.log(settings)
-    if (!settings.data) {
-      return res.send({});
-    }
-    return res.send(settings.data);
-  });
+    console.info('Settings received');
+    return res.send(settings)
+  }).
+  catch((err) => next(err));
 });
 
 const readJSON = (req) => {
@@ -43,28 +44,36 @@ const readJSON = (req) => {
     });
     req.once('error', reject);
   });
-}
+};
 
-app.post('/api/settings', (req, res) => {
-  // bodyParser
+const cloneRepo = (repoName) => {
+  return exec('rm -rf repo').
+  then(() => simpleGit().clone(`https://github.com/${repoName}`, './repo'));
+};
+
+const sendSettings = (body) => {
+  return fetch('https://hw.shri.yandex/api/conf', {
+    method: 'POST',
+    headers: { 
+      'Authorization': `Bearer ${AUTH_TOKEN}`,
+      'Content-type': 'application/json'
+    },
+    agent: agent,
+    body: JSON.stringify(body)
+  });
+};
+
+app.post('/api/settings', (req, res, next) => {
   readJSON(req).
   then(body => {
     const { repoName } = body;
-    simpleGit().clone(`https://github.com/${repoName}`, './repo');
-    return fetch('https://hw.shri.yandex/api/conf', {
-      method: 'POST',
-      headers: { 
-        'Authorization': `Bearer ${AUTH_TOKEN}`,
-        'Content-type': 'application/json'
-      },
-      agent: agent,
-      body: JSON.stringify(body)
-    });
+    return Promise.all([cloneRepo(repoName), sendSettings(body)]);
   }).
-  then((result) => res.send(result));
+  then(([, result]) => res.send(result)).
+  catch((err) => next(err));
 });
 
-app.get('/api/builds', (req, res) => {
+app.get('/api/builds', (req, res, next) => {
   const { search } = url.parse(req.originalUrl);
   fetch(`https://hw.shri.yandex/api/build/list${search ? search : ''}`, {
     headers: { 
@@ -73,10 +82,11 @@ app.get('/api/builds', (req, res) => {
     agent: agent
   }).
   then(result => result.json()).
-  then(result => res.send(result));
+  then(result => res.send(result)).
+  catch((err) => next(err));
 });
 
-app.post('/api/builds/:commitHash', (req, res) => {
+app.post('/api/builds/:commitHash', (req, res, next) => {
   const { commitHash } = req.params;
   const reqBody = {
     commitHash
@@ -102,10 +112,12 @@ app.post('/api/builds/:commitHash', (req, res) => {
       agent: agent,
       body: JSON.stringify(reqBody)
     });
-  }).then(result => res.send(result));
+  }).
+  then(result => res.send(result)).
+  catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId/log', (req, res) => {
+app.get('/api/builds/:buildId/log', (req, res, next) => {
   const { buildId } = req.params;
 
   fetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {
@@ -115,10 +127,11 @@ app.get('/api/builds/:buildId/log', (req, res) => {
     agent: agent
   }).
   then(result => result.text()).
-  then(result => res.send(result));
+  then(result => res.send(result)).
+  catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId', (req, res) => {
+app.get('/api/builds/:buildId', (req, res, next) => {
   const { buildId } = req.params;
 
   fetch(`https://hw.shri.yandex/api/build/details?buildId=${buildId}`, {
@@ -128,7 +141,8 @@ app.get('/api/builds/:buildId', (req, res) => {
     agent: agent
   }).
   then(result => result.json()).
-  then(result => res.send(result));
+  then(result => res.send(result)).
+  catch((err) => next(err));
 });
 
 app.listen(3000);
