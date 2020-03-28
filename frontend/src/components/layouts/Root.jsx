@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Settings extends Component {
+export default class Root extends Component {
   render() {
     return (
       <div>
-        
+        Ghbdtn
       </div>
     )
   }
