@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react'
-import Footer from '../library/Footer'
-import Layout from '../library/Layout'
-import Builds from '../library/Builds'
+import React, { Component, Fragment } from 'react';
+import Footer from '../library/Footer';
+import Layout from '../library/Layout';
+import Builds from '../library/Builds';
+import Header from '../library/Header';
 
 export default class BuildsHistory extends Component {
   render() {
