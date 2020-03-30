@@ -16,7 +16,7 @@ export default class SettingsPage extends Component {
         />
         <Layout>
           <section className='Layout__Container Settings'>
-            <Form />
+            <Form history={ this.props.history } />
           </section>
         </Layout>
         <Footer />

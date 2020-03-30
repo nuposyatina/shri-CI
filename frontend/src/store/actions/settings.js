@@ -12,16 +12,38 @@ const request = (dispatch, actions, url, options = {}) => {
   });
 }
 
+
 export const getSettings = () => {
+  const actions = {
+    requestStarted: getSettingsStarted,
+    requestSuccess: getSettingsSuccess,
+    requestError: getSettingsError
+  };
+  return (dispatch) => request(dispatch, actions, 'http://localhost:3000/api/settings');
+};
+
+export const setSettings = (data) => {
+  const actions = {
+    requestStarted: setSettingsStarted,
+    requestSuccess: setSettingsSuccess,
+    requestError: setSettingsError
+  };
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
   return (dispatch) => {
-    dispatch(getSettingsStarted());
-    fetch('http://localhost:3000/api/settings').
-    then(res => res.json()).
-    then(body => {
-      const data = body.data ? body.data : body;
-      return dispatch(getSettingsSuccess(data));
-    }).
-    catch(err => dispatch(getSettingsError(err)));
+    dispatch(setSettingsStarted());
+    fetch('http://localhost:3000/api/settings', options).
+    then((response) => {
+      if (response.status === 200) {
+        console.log(data)
+        dispatch(setSettingsSuccess(data))
+      }
+    })
   }
 };
 
@@ -42,3 +64,18 @@ const getSettingsError = (error) => ({
     error
   }
 });
+
+const setSettingsStarted = () => ({
+  type: 'SET_SETTINGS_STARTED'
+});
+
+const setSettingsSuccess = (data) => ({
+  type: 'SET_SETTINGS_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const setSettingsError = () => ({
+  type: 'SET_SETTINGS_ERROR'
+})

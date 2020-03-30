@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getSettings } from '../../store/actions/settings';
+import { getSettings, setSettings } from '../../store/actions/settings';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Field from './Field';
@@ -14,6 +14,9 @@ class Form extends Component {
       mainBranch: '',
       period: ''
     }
+
+    this.onCancelChanges = this.onCancelChanges.bind(this);
+    this.onSaveChanges = this.onSaveChanges.bind(this);
   }
   
 
@@ -37,17 +40,31 @@ class Form extends Component {
   getOnChangeInput(field) {
     return (e) => {
       const { value } = e.target;
-      const result = field === 'period' ? value : +value;
+      const result = field === 'period' ? +value : value;
       this.setState({ [field]: result });
     };
   }
 
   getOnClearInput(field) {
     return (e) => {
-      e.preventDefault();
       const result = field === 'period' ? 0 : '';
       this.setState({ [field]: result });
     }
+  }
+
+  checkButtonDisabled() {
+    const { repoName, buildCommand } = this.state;
+    const { isSaved } = this.props.settings;
+    return repoName === '' || buildCommand === '' || !isSaved;
+  }
+  
+  onSaveChanges(e) {
+    e.preventDefault();
+    this.props.dispatch(setSettings(this.state));
+  }
+
+  onCancelChanges(e) {
+    this.props.history.push('/');
   }
 
   render() {
@@ -58,7 +75,7 @@ class Form extends Component {
       period
     } = this.state;
     return (
-      <form action='' className='Form'>
+      <form action='' className='Form' onSubmit={ this.onSaveChanges }>
         <div className='Form__Header'>
           <h2 className='Title Form__Title Text Text_size_m Text_view_primary'>Settings</h2>
           <p className='Form__Description Text Text_size_s Text_view_secondary'>Configure repository connection and synchronization settings</p>
@@ -109,8 +126,21 @@ class Form extends Component {
         </div>
 
         <div className='Form__Action'>
-          <button className='Button Button_view_submit Button_size_m Form__SubmitButton Button_type_default' type='submit'>Save</button>
-          <button className='Button Button_view_default Button_size_m Button_type_default'>Cancel</button>
+          <button
+            className='Button Button_view_submit Button_size_m Form__SubmitButton Button_type_default'
+            type='submit'
+            disabled={ this.checkButtonDisabled() }
+          >
+            Save
+          </button>
+          <button
+            className='Button Button_view_default Button_size_m Button_type_default'
+            type='button'
+            disabled={ this.checkButtonDisabled() }
+            onClick={ this.onCancelChanges }
+          >
+            Cancel
+          </button>
         </div>
       </form>
     )
