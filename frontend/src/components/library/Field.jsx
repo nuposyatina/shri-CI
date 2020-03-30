@@ -16,14 +16,16 @@ export default (props) => {
     onClear
   } = props;
   return (
-    <div className={ `Field Form__Field ${mods}`.trim() }>
-      <label
-        className='Field__Label Text Text_size_s Text_view_primary'
-        htmlFor={ id }
-      >
-        { labelText }
-        { required ? <span className='Field__Required'> *</span> : '' }
-      </label>
+    <div className={ `Field ${mods}`.trim() }>
+      {      
+        labelText ? (<label
+          className='Field__Label Text Text_size_s Text_view_primary'
+          htmlFor={ id }
+        >
+          { labelText }
+          { required ? <span className='Field__Required'> *</span> : '' }
+        </label>) : null
+      }
       {
         type === 'number' ? (
           <MaskedInput
