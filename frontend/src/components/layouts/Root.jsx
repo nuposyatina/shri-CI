@@ -18,9 +18,10 @@ class Root extends Component {
   }
   
   render() {
+    const { settings } = this.props;
     return (
-        this.props.settings.id ? (
-          <BuildsHistory />
+        settings.id ? (
+          <BuildsHistory settings={ settings } />
         ) : (
           <Main />
         )

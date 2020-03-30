@@ -37,5 +37,8 @@ const getSettingsSuccess = (settings) => ({
 });
 
 const getSettingsError = (error) => ({
-  type: 'GET_SETTINGS_ERROR'
+  type: 'GET_SETTINGS_ERROR',
+  payload: {
+    error
+  }
 });

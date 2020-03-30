@@ -4,11 +4,16 @@ import Layout from '../library/Layout'
 import Footer from '../library/Footer'
 import Form from '../library/Form'
 
+
 export default class SettingsPage extends Component {
+
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header
+          headerText='School CI server'
+          headerView='secondary'
+        />
         <Layout>
           <section className='Layout__Container Settings'>
             <Form />

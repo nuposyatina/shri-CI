@@ -1,7 +1,62 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { getSettings } from '../../store/actions/settings';
+import { connect } from 'react-redux';
+import _ from 'lodash';
+import Field from './Field';
 
-export default class Form extends Component {
+class Form extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      repoName: '',
+      buildCommand: '',
+      mainBranch: '',
+      period: ''
+    }
+  }
+  
+
+  componentDidMount() {
+    this.props.dispatch(getSettings());
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isLoad, repoName, buildCommand, mainBranch, period } = this.props.settings;
+    const stateIsNotChanged = _.isEqual(prevState, this.state);
+    if (isLoad === true && isLoad !== prevProps.settings.isLoad && stateIsNotChanged) {
+      this.setState({
+        repoName,
+        buildCommand,
+        mainBranch,
+        period
+      });
+    }
+  }
+
+  getOnChangeInput(field) {
+    return (e) => {
+      const { value } = e.target;
+      const result = field === 'period' ? value : +value;
+      this.setState({ [field]: result });
+    };
+  }
+
+  getOnClearInput(field) {
+    return (e) => {
+      e.preventDefault();
+      const result = field === 'period' ? 0 : '';
+      this.setState({ [field]: result });
+    }
+  }
+
   render() {
+    const {
+      repoName,
+      buildCommand,
+      mainBranch,
+      period
+    } = this.state;
     return (
       <form action='' className='Form'>
         <div className='Form__Header'>
@@ -10,41 +65,47 @@ export default class Form extends Component {
         </div>
 
         <div className='Form__Content'>
-          <div className='Field Form__Field'>
-            <label for='repository' className='Field__Label Text Text_size_s Text_view_primary'>GitHub repository <span className='Field__Required'>*</span></label>
-            <input className='Input Field__Control' id='repository' type='text' placeholder='user-name/repo-name' />
-            <button className='Button Button_role_clear Field__Button'>
-              <svg className='Button__Icon Button__Icon_view_secondary' width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 16C3.6 16 0 12.4 0 8C0 3.6 3.6 0 8 0C12.4 0 16 3.6 16 8C16 12.4 12.4 16 8 16ZM12 5.12L10.88 4L8 6.88L5.12 4L4 5.12L6.88 8L4 10.88L5.12 12L8 9.12L10.88 12L12 10.88L9.12 8L12 5.12Z"/>
-              </svg>
-            </button>
-          </div>
-
-          <div className='Field Form__Field'>
-            <label for='command' className='Field__Label Text Text_size_s Text_view_primary'>Build command</label>
-            <input className='Input Field__Control' id='command' type='text' value='npm ci && npm run build' />
-            <button className='Button Button_role_clear Field__Button'>
-              <svg className='Button__Icon Button__Icon_view_secondary' width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 16C3.6 16 0 12.4 0 8C0 3.6 3.6 0 8 0C12.4 0 16 3.6 16 8C16 12.4 12.4 16 8 16ZM12 5.12L10.88 4L8 6.88L5.12 4L4 5.12L6.88 8L4 10.88L5.12 12L8 9.12L10.88 12L12 10.88L9.12 8L12 5.12Z"/>
-              </svg>
-            </button>
-          </div>
-
-          <div className='Field Form__Field'>
-            <label for='branch' className='Field__Label Text Text_size_s Text_view_primary'>Main Branch</label>
-            <input className='Input Field__Control' id='branch' type='text' value='master' />
-            <button className='Button Button_role_clear Field__Button'>
-              <svg className='Button__Icon Button__Icon_view_secondary' width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 16C3.6 16 0 12.4 0 8C0 3.6 3.6 0 8 0C12.4 0 16 3.6 16 8C16 12.4 12.4 16 8 16ZM12 5.12L10.88 4L8 6.88L5.12 4L4 5.12L6.88 8L4 10.88L5.12 12L8 9.12L10.88 12L12 10.88L9.12 8L12 5.12Z"/>
-              </svg>
-            </button>
-          </div>
-
-          <div className='Field Form__Field Field_align_line Settings__SyncTimeField'>
-            <label for='synctime' className='Field__Label Text Text_size_s Text_view_primary'>Synchronize every</label>
-            <input className='Input Field__Control' id='synctime' type='text' value='10' />
+          <Field
+            id='repository'
+            placeholder='user-name/repo-name'
+            labelText='GitHub repository'
+            inputValue={ repoName }
+            required
+            clearButton
+            onChange={ this.getOnChangeInput('repoName') }
+            onClear={ this.getOnClearInput('repoName') }
+          />
+          <Field
+            id='command'
+            placeholder='npm run build'
+            labelText='Build command'
+            inputValue={ buildCommand }
+            required
+            clearButton
+            onChange={ this.getOnChangeInput('buildCommand') }
+            onClear={ this.getOnClearInput('buildCommand') }
+          />
+          <Field
+            id='branch'
+            placeholder='master'
+            labelText='Main Branch'
+            inputValue={ mainBranch }
+            clearButton
+            onChange={ this.getOnChangeInput('mainBranch') }
+            onClear={ this.getOnClearInput('mainBranch') }
+          />
+          <Field
+            mods='Field_align_line Settings__SyncTimeField'
+            type='number'
+            id='synctime'
+            labelText='Synchronize every'
+            inputValue={ period }
+            clearButton={ false }
+            onChange={ this.getOnChangeInput('period') }
+            onClear={ this.getOnClearInput('period') }
+          >
             <span className='Field__Measure Text Text_size_s'>minutes</span>
-          </div>
+          </Field>
         </div>
 
         <div className='Form__Action'>
@@ -55,3 +116,9 @@ export default class Form extends Component {
     )
   }
 }
+
+export default connect((state) => {
+  return {
+    settings: state.settings
+  };
+})(Form);

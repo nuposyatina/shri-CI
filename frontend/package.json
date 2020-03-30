@@ -8,15 +8,20 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
+    "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/plugin-transform-destructuring": "^7.8.8",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
-    "parcel-bundler": "^1.12.4"
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "parcel-bundler": "^1.12.4",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
