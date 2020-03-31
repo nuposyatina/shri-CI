@@ -15,11 +15,7 @@
     "url": "https://github.com/nuposyatina/shri-CI/issues"
   },
   "homepage": "https://github.com/nuposyatina/shri-CI#readme",
-  "devDependencies": {
-    "csscomb": "^4.3.0",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1"
-  },
+  "devDependencies": {},
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

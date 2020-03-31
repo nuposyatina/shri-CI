@@ -21,7 +21,10 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "parcel-bundler": "^1.12.4",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "csscomb": "^4.3.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

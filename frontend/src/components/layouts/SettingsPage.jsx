@@ -5,22 +5,19 @@ import Footer from '../library/Footer'
 import Form from '../library/Form'
 
 
-export default class SettingsPage extends Component {
-
-  render() {
-    return (
-      <Fragment>
-        <Header
-          headerText='School CI server'
-          headerView='secondary'
-        />
-        <Layout>
-          <section className='Layout__Container Settings'>
-            <Form history={ this.props.history } />
-          </section>
-        </Layout>
-        <Footer />
-      </Fragment>
-    )
-  }
-}
+export default ({ history }) => {
+  return (
+    <Fragment>
+      <Header
+        headerText='School CI server'
+        headerView='secondary'
+      />
+      <Layout>
+        <section className='Layout__Container Settings'>
+          <Form history={ history } />
+        </section>
+      </Layout>
+      <Footer />
+    </Fragment>
+  )
+};
