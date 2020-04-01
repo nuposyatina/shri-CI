@@ -4,7 +4,7 @@ const initialState = {
   isSaved: true
 };
 
-export const settings = (state = initialState, action) => {
+const settings = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_SETTINGS_STARTED':
       console.log(state)

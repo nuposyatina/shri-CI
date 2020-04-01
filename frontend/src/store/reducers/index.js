@@ -1,4 +1,5 @@
-import { settings } from './settings';
+import settings from './settings';
+import build from './build';
 import { combineReducers } from 'redux';
 export const initialState = {};
 

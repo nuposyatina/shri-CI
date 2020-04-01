@@ -6,7 +6,7 @@ import Root from 'layouts/Root';
 
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 export default class Application extends Component {
   render() {

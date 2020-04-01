@@ -10,20 +10,25 @@ export default class Modal extends Component {
     }
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onClearInput = this.onClearInput.bind(this);
+    this.onRunBuild = this.onRunBuild.bind(this);
   }
 
-  onChangeInput() {
-
+  onChangeInput(e) {
+    this.setState({ commitHash: e.target.value });
   }
 
   onClearInput() {
+    this.setState({ commitHash: '' });
+  }
 
+  onRunBuild() {
+    this.props.dispatch(runBuild(this.state.commitHash));
   }
   
   render() {
     const { commitHash } = this.state;
     return (
-      <form action="" className='Modal'>
+      <form action="" className='Modal' onSubmit={ this.onRunBuild }>
         <h2 className='Modal__Header Text Text_size_xl Text_view_primary'>
           New build
         </h2>
@@ -37,14 +42,14 @@ export default class Modal extends Component {
           inputValue={ commitHash }
           required
           clearButton
-          onChange={ this.getOnChangeInput }
-          onClear={ this.getOnClearInput }
+          onChange={ this.onChangeInput }
+          onClear={ this.onClearInput }
         />
         <div className='Modal__Action'>
           <button className='Button Button_view_submit Button_size_m Button_type_default Modal__SubmitButton' type="submit">
             Run Build
           </button>
-          <button className='Button Button_view_default Button_size_m Button_type_default'>
+          <button className='Button Button_view_default Button_size_m Button_type_default' type='button' onClick={ this.props.onClose }>
             Cancel
           </button>
         </div>
