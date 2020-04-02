@@ -5,8 +5,9 @@ import Builds from 'library/Builds';
 import Header from 'library/Header';
 import Modal from 'library/Modal';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class BuildsHistory extends Component {
+class BuildsHistory extends Component {
   constructor(props) {
     super(props);
   
@@ -52,7 +53,7 @@ export default class BuildsHistory extends Component {
         </Header>
         <Layout>
           <section className='Layout__Container BuildHistory'>
-            { this.state.showModal && <Modal onClose={ this.onCloseModal }/> }
+            { this.state.showModal && <Modal dispatch={ this.props.dispatch } onClose={ this.onCloseModal }/> }
             <Builds />
             <button className='Button Button_view_default Button_size_s Button_type_default'>Show more</button>
           </section>
@@ -62,3 +63,9 @@ export default class BuildsHistory extends Component {
     )
   }
 };
+
+export default connect((state) => {
+  return {
+    build: state.build
+  };
+})(BuildsHistory);

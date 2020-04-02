@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Field from './Field'
+import React, { Component } from 'react';
+import Field from './Field';
+import { runBuild } from '../../store/actions/build';
 
 export default class Modal extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ export default class Modal extends Component {
     this.setState({ commitHash: '' });
   }
 
-  onRunBuild() {
+  onRunBuild(e) {
+    e.preventDefault();
     this.props.dispatch(runBuild(this.state.commitHash));
   }
   

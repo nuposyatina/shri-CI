@@ -4,7 +4,7 @@ export default class Logs extends Component {
   render() {
     return (
       <pre className='Logs Layout__Container'><code>
-      Starting type checking and linting service...
+      {/* Starting type checking and linting service...
       Using 1 worker with 2048MB memory limit
       Hash: d54ed20309f352b3bda76cbbb6d272ed6afde438bd7a265eb08db3624c32dfc883a8c379c67f4de6
       Version: webpack 4.41.6
@@ -59,7 +59,7 @@ export default class Logs extends Component {
           [./src/account/reducers/serverError.ts] 526 bytes {main} [built]
           [./src/account/server.tsx] 1.62 KiB {main} [built]
           [./src/account/store.ts] 1.05 KiB {main} [built]
-              + 1484 hidden modules
+              + 1484 hidden modules */}
           </code>
         </pre>
     )

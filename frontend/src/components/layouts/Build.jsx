@@ -5,7 +5,7 @@ import Footer from 'library/Footer';
 import BuildCard from 'library/BuildCard';
 import Logs from 'library/Logs';
 
-export default () => {
+const Build = () => {
   return (
     <Fragment>
       <Header />
@@ -19,3 +19,5 @@ export default () => {
     </Fragment>
   )
 };
+
+export default Build;

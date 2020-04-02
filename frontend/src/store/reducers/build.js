@@ -12,6 +12,13 @@ const settings = (state = initialState, action) => {
         ...state,
         commitHash: action.payload.commitHash
       };
+    case 'RUN_BUILD_SUCCESS':
+      return {
+        ...state,
+        buildId: action.payload.id,
+        buildNumber: action.payload.buildNumber,
+        status: action.payload.status
+      };
     default:
       return state;
   };

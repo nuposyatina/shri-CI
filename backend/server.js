@@ -93,11 +93,13 @@ app.get('/api/builds', (req, res, next) => {
 
 app.post('/api/builds/:commitHash', (req, res, next) => {
   const { commitHash } = req.params;
+  console.log(req.params)
   const reqBody = {
     commitHash
   };
-  simpleGit('./repo').show(['-s', '--format=%B', commitHash]).
+  simpleGit('./repo').show(['-s', '--format=%B', '-n', '1', commitHash]).
   then(log => {
+    console.log('!!!', log)
     reqBody.commitMessage = log
     return simpleGit('./repo').show(['-s', '--format=%an', commitHash])
   }).
@@ -105,6 +107,8 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
     reqBody.authorName = log
     return simpleGit('./repo').branch(['--contains', commitHash, '-a']);
   }).
+  // then(log => )
+  // }).
   then(log => {
     reqBody.branchName = log.current
     console.log(reqBody)
@@ -118,6 +122,7 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
       body: JSON.stringify(reqBody)
     });
   }).
+  then(result => result.json()).
   then(result => res.send(result)).
   catch((err) => next(err));
 });

@@ -10,7 +10,8 @@
     "react-router-dom": "^5.1.2",
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -42,6 +43,7 @@
   "homepage": "https://github.com/nuposyatina/shri-CI#readme",
   "alias": {
     "library": "./src/components/library",
-    "layouts": "./src/components/layouts"
+    "layouts": "./src/components/layouts",
+    "store": "./src/store"
   }
 }
