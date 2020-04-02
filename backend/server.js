@@ -80,6 +80,7 @@ app.post('/api/settings', (req, res, next) => {
 
 app.get('/api/builds', (req, res, next) => {
   const { search } = url.parse(req.originalUrl);
+  console.log(search)
   fetch(`https://hw.shri.yandex/api/build/list${search ? search : ''}`, {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`

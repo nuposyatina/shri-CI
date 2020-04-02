@@ -5,7 +5,7 @@ const initialState = {
   status: null
 };
 
-const settings = (state = initialState, action) => {
+const build = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_COMMIT_HASH':
       return {
@@ -24,4 +24,4 @@ const settings = (state = initialState, action) => {
   };
 };
 
-export default settings;
+export default build;

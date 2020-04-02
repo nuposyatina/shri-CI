@@ -11,7 +11,7 @@ const Build = () => {
       <Header />
       <Layout>
         <section className='Layout__Container BuildDetails'>
-          <BuildCard />
+          {/* <BuildCard /> */}
         </section>
         <Logs />
       </Layout>
