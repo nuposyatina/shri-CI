@@ -3,13 +3,14 @@ import BuildCard from './BuildCard';
 
 export default class Builds extends Component {
   render() {
-    const { builds } = this.props;
+    const { builds, dispatch } = this.props;
     return (
         <ul className='Builds'>
           { builds.map(build => (
               <BuildCard
                 key={ build.id }
-                buildData={ build }
+                buildId={ build.id }
+                dispatch={ dispatch }
                 status='list'
               />
             ))
@@ -17,4 +18,4 @@ export default class Builds extends Component {
         </ul>
     )
   }
-}
+};

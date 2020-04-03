@@ -23,11 +23,6 @@ export const getSettings = () => {
 };
 
 export const setSettings = (data) => {
-  const actions = {
-    requestStarted: setSettingsStarted,
-    requestSuccess: setSettingsSuccess,
-    requestError: setSettingsError
-  };
   const options = {
     method: 'POST',
     headers: {
@@ -40,7 +35,6 @@ export const setSettings = (data) => {
     fetch('http://localhost:3000/api/settings', options).
     then((response) => {
       if (response.status === 200) {
-        console.log(data)
         dispatch(setSettingsSuccess(data))
       }
     })
@@ -78,4 +72,4 @@ const setSettingsSuccess = (data) => ({
 
 const setSettingsError = () => ({
   type: 'SET_SETTINGS_ERROR'
-})
+});

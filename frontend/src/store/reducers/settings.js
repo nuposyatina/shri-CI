@@ -7,7 +7,6 @@ const initialState = {
 const settings = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_SETTINGS_STARTED':
-      console.log(state)
       return {
         ...state,
         loading: true,
@@ -36,7 +35,6 @@ const settings = (state = initialState, action) => {
         isSaved: false
       };
     case 'SET_SETTINGS_SUCCESS':
-      console.log(action.payload)
       return {
         loading: false,
         isLoad: true,

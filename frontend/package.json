@@ -10,8 +10,7 @@
     "react-router-dom": "^5.1.2",
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "store": "^2.0.12"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -20,12 +19,11 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
-    "parcel-bundler": "^1.12.4",
-    "redux-devtools-extension": "^2.13.8",
     "csscomb": "^4.3.0",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1"
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "parcel-bundler": "^1.12.4",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

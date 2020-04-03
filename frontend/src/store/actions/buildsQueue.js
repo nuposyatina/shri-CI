@@ -11,7 +11,6 @@ export const getBuilds = (params) => {
     fetch(`http://localhost:3000/api/builds${query}`).
     then((response) => response.json()).
     then((result) => {
-      console.log(result)
       dispatch(getBuildsSuccess(result.data))
     })
   }

@@ -1,7 +1,13 @@
 import settings from './settings';
 import build from './build';
 import buildsQueue from './buildsQueue';
+import buildDetails from './buildDetails';
 import { combineReducers } from 'redux';
 export const initialState = {};
 
-export const rootReducer = combineReducers({ settings, build, buildsQueue });
+export const rootReducer = combineReducers({
+  settings,
+  build,
+  buildsQueue,
+  buildDetails
+});
