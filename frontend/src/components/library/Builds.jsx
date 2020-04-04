@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import BuildCard from './BuildCard';
 
+
 export default class Builds extends Component {
   render() {
-    const { builds, dispatch } = this.props;
+    const { builds, dispatch, history } = this.props;
     return (
         <ul className='Builds'>
           { builds.map(build => (
@@ -12,6 +13,7 @@ export default class Builds extends Component {
                 buildId={ build.id }
                 dispatch={ dispatch }
                 status='list'
+                history={ history }
               />
             ))
           }

@@ -3,21 +3,36 @@ import Header from 'library/Header';
 import Layout from 'library/Layout';
 import Footer from 'library/Footer';
 import BuildCard from 'library/BuildCard';
+import { connect } from 'react-redux';
 import Logs from 'library/Logs';
 import { Link } from 'react-router-dom';
 
 
-export default class Build extends Component {
+class Build extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      buildId: null
+    }
+  }
+  
 
   componentDidMount() {
-    
+    const { buildNumber } = this.props.match.params;
+    const { builds } = this.props.buildsQueue;
+    const build = builds.find(build => build.buildNumber === +buildNumber);
+    if (build) {
+      this.setState({buildId: build.id})
+    }
   }
 
   render() {
+    const { dispatch, settings } = this.props;
     return (
       <Fragment>
         <Header 
-          headerText='123'
+          headerText={ settings.repoName }
           headerView='primary'
         >
           <div className='Header__Action'>
@@ -37,12 +52,29 @@ export default class Build extends Component {
         </Header>
         <Layout>
           <section className='Layout__Container BuildDetails'>
-            {/* <BuildCard /> */}
+              { this.state.buildId && (
+                <BuildCard 
+                  buildId={ this.state.buildId }
+                  dispatch={ dispatch }
+                  status='details'
+                />
+              ) }
           </section>
-          <Logs />
+          { this.state.buildId && (
+            <Logs buildId={ this.state.buildId } />
+          ) }
         </Layout>
         <Footer />
       </Fragment>
     )
   }
 }
+
+export default connect((state) => {
+  return {
+    build: state.build,
+    buildsQueue: state.buildsQueue,
+    buildDetails: state.buildDetails,
+    settings: state.settings
+  };
+})(Build);

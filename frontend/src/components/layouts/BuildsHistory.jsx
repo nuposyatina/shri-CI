@@ -45,10 +45,11 @@ class BuildsHistory extends Component {
   }
   
   render() {
+    const { settings, history, dispatch, buildsQueue } = this.props;
     return (
       <Fragment>
         <Header
-          headerText={ this.props.settings.repoName }
+          headerText={ settings.repoName }
           headerView='primary'
         >
           <div className='Header__Action'>
@@ -89,13 +90,14 @@ class BuildsHistory extends Component {
         <Layout>
           <section className='Layout__Container BuildHistory'>
             { this.state.showModal && (
-              <Modal dispatch={ this.props.dispatch } onClose={ this.onCloseModal }/>
+              <Modal dispatch={ dispatch } onClose={ this.onCloseModal }/>
             ) }
             <Builds 
-              builds={ this.props.buildsQueue.builds }
-              dispatch={ this.props.dispatch }
+              builds={ buildsQueue.builds }
+              dispatch={ dispatch }
+              history={ history }
             />
-            { !this.props.buildsQueue.allBuildsLoaded && (
+            { !buildsQueue.allBuildsLoaded && (
               <button
                 className='Button Button_view_default Button_size_s Button_type_default'
                 onClick={ this.onShowMoreBuilds }
