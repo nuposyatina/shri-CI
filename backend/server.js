@@ -15,6 +15,11 @@ const agent = new https.Agent({
 const { AUTH_TOKEN } = require('dotenv').config().parsed;
 
 app.use(express.static(path.resolve(__dirname, 'static')));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
 
 app.get('/api/settings', (req, res, next) => {
   fetch('https://hw.shri.yandex/api/conf', {
@@ -91,7 +96,7 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
   const reqBody = {
     commitHash
   };
-  simpleGit('./repo').show(['-s', '--format=%B', commitHash]).
+  simpleGit('./repo').show(['-s', '--format=%B', '-n', '1', commitHash]).
   then(log => {
     reqBody.commitMessage = log
     return simpleGit('./repo').show(['-s', '--format=%an', commitHash])
@@ -100,9 +105,10 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
     reqBody.authorName = log
     return simpleGit('./repo').branch(['--contains', commitHash, '-a']);
   }).
+  // then(log => )
+  // }).
   then(log => {
     reqBody.branchName = log.current
-    console.log(reqBody)
     return fetch('https://hw.shri.yandex/api/build/request', {
       method: 'POST',
       headers: { 
@@ -113,6 +119,7 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
       body: JSON.stringify(reqBody)
     });
   }).
+  then(result => result.json()).
   then(result => res.send(result)).
   catch((err) => next(err));
 });

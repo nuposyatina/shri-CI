@@ -3,6 +3,7 @@
   box-shadow: var(--build-card-shadow-default);
   border-radius: var(--radius-l);
   margin-bottom: var(--space-6xs);
+  display: block;
 }
 
 .BuildCard:hover {
