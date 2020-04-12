@@ -1,16 +1,19 @@
 {
-  "name": "shri-ci-frontend",
+  "name": "shri-ci",
   "version": "1.0.0",
-  "description": "frontend",
-  "main": "src/index.html",
+  "description": "SHRI Homework",
+  "main": "frontend/src/index.html",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "simple-git": "^1.132.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -23,11 +26,12 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "parcel-bundler": "^1.12.4",
+    "react-text-mask": "^5.4.3",
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html"
+    "test": "jest",
+    "start": "parcel frontend/src/index.html"
   },
   "repository": {
     "type": "git",
@@ -40,8 +44,8 @@
   },
   "homepage": "https://github.com/nuposyatina/shri-CI#readme",
   "alias": {
-    "library": "./src/components/library",
-    "layouts": "./src/components/layouts",
-    "store": "./src/store"
+    "library": "./frontend/src/components/library",
+    "layouts": "./frontend/src/components/layouts",
+    "store": "./frontend/src/store"
   }
 }
