@@ -1,5 +1,4 @@
 import React from 'react';
-import MaskedInput from 'react-text-mask'
 
 export default (props) => {
   const {
@@ -26,17 +25,6 @@ export default (props) => {
           { required ? <span className='Field__Required'> *</span> : '' }
         </label>) : null
       }
-      {
-        type === 'number' ? (
-          <MaskedInput
-            mask={ [/\d/, /\d/] }
-            placeholder={ placeholder }
-            className='Input Field__Control'
-            id={ id }
-            value={ inputValue }
-            onChange={ onChange }
-          />
-        ) : (
           <input
             className='Input Field__Control'
             placeholder={ placeholder }
@@ -45,8 +33,6 @@ export default (props) => {
             value={ inputValue }
             onChange={ onChange }
           />
-        )
-      }
 
       {
         clearButton ? (

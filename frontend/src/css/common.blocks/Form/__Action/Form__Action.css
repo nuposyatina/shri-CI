@@ -1,6 +1,7 @@
 .Form__Action {
   padding-top: var(--space-3xs);
   padding-bottom: var(--space-3xs);
+  margin-bottom: var(--space-3xs);
   display: flex;
   flex-direction: column;
 }

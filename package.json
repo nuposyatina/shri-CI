@@ -30,11 +30,11 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "parcel-bundler": "^1.12.4",
-    "react-text-mask": "^5.4.3",
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "test": "jest",
+    "watch": "jest --watch",
     "start": "parcel frontend/src/index.html"
   },
   "repository": {
