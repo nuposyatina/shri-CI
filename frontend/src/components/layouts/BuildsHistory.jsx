@@ -7,7 +7,7 @@ import Modal from 'library/Modal';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getBuilds } from '/store/actions/buildsQueue';
+import { getBuilds } from 'store/actions/buildsQueue';
 
 class BuildsHistory extends Component {
   constructor(props) {

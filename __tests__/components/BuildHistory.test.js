@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import BuildHistory from 'layouts/Form';
+import BuildsHistory from 'layouts/BuildsHistory';
 
 describe('Поведение компонента', () => {
   test('При нажатии на кнопку «Run Build» появляется модальное окно', () => {
