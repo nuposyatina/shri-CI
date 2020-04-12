@@ -1,0 +1,13 @@
+{
+  "setupFilesAfterEnv": [
+    "<rootDir>/jest.setup.js"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    "^reducers(.*)$": "<rootDir>/frontend/src/store/reducers$1",
+    "^actions(.*)$": "<rootDir>/frontend/src/store/actions$1",
+    "^layouts(.*)$": "<rootDir>/frontend/src/components/layouts$1",
+    "^library(.*)$": "<rootDir>/frontend/src/components/library$1",
+    "^store(.*)$": "<rootDir>/frontend/src/store$1"
+  }
+}
