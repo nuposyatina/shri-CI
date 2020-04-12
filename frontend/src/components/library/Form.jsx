@@ -154,7 +154,7 @@ export class Form extends Component {
             Cancel
           </button>
         </div>
-        <p className='Text Text_view_fail Text_size_s ErrorText'>Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.</p>
+        {this.props.settings.error && <p className='Text Text_view_fail Text_size_s ErrorText'>Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.</p>}
       </form>
     )
   }
