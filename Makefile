@@ -7,7 +7,6 @@ client:
 server:
 	node backend/server.js
 
-
 test:
 	npm test
 

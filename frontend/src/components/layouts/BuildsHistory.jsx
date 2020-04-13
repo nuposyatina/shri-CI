@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import { getBuilds } from 'store/actions/buildsQueue';
 
-class BuildsHistory extends Component {
+export class BuildsHistory extends Component {
   constructor(props) {
     super(props);
   
@@ -54,6 +54,7 @@ class BuildsHistory extends Component {
         >
           <div className='Header__Action'>
             <button
+              id='build'
               className='Header__Button Button Button_size_s Button_role_build Button_view_default Button_type_action Button_textVisible'
               onClick={ this.onOpenModal }
             >
@@ -99,6 +100,7 @@ class BuildsHistory extends Component {
             />
             { !buildsQueue.allBuildsLoaded && (
               <button
+                id='show-more'
                 className='Button Button_view_default Button_size_s Button_type_default'
                 onClick={ this.onShowMoreBuilds }
               >Show more</button>
@@ -113,7 +115,6 @@ class BuildsHistory extends Component {
 
 export default connect((state) => {
   return {
-    build: state.build,
     buildsQueue: state.buildsQueue
   };
 })(BuildsHistory);

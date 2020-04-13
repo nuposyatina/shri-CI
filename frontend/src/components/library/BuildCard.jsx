@@ -5,7 +5,7 @@ import cx from 'classnames';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-class BuildCard extends Component {  
+export class BuildCard extends Component {  
   componentDidMount() {
     const { buildId, dispatch } = this.props;
     dispatch(getBuildDetails(buildId));
