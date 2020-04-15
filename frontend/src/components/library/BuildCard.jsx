@@ -3,6 +3,7 @@ import { getBuildDetails } from '../../store/actions/buildDetails';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import { formatDuration } from './lib';
+//TODO: учитывать таймзону
 import moment from 'moment';
 import 'moment/locale/ru';
 
@@ -12,10 +13,10 @@ export class BuildCard extends Component {
     dispatch(getBuildDetails(buildId));
   }
 
-  onSelectBuild(buildNumber, status) {
+  onSelectBuild(buildId, status) {
     return () => {
-      if (!(status === 'Success' || status == 'Fail')) return;
-      this.props.history.push(`/build/${buildNumber}`);
+      // if (!(status === 'Success' || status == 'Fail')) return;
+      this.props.history.push(`/build/${buildId}`);
     }
   }
 
@@ -26,7 +27,7 @@ export class BuildCard extends Component {
       <Fragment>
       { currentBuild && (
         <a
-          onClick={ this.onSelectBuild(currentBuild.buildNumber, currentBuild.status) }
+          onClick={ this.onSelectBuild(buildId, currentBuild.status) }
           className={`BuildCard BuildCard_status_${status}`}
         >
           <div className='BuildCard__Content'>

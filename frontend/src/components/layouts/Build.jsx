@@ -19,12 +19,12 @@ class Build extends Component {
   
 
   componentDidMount() {
-    const { buildNumber } = this.props.match.params;
-    const { builds } = this.props.buildsQueue;
-    const build = builds.find(build => build.buildNumber === +buildNumber);
-    if (build) {
-      this.setState({buildId: build.id})
-    }
+    // const { buildId } = this.props.match.params;
+    // const { builds } = this.props.buildsQueue;
+    // const build = builds.find(build => build.buildNumber === +buildNumber);
+    // if (build) {
+    //   this.setState({buildId: build.id})
+    // }
   }
 
   render() {
@@ -52,13 +52,11 @@ class Build extends Component {
         </Header>
         <Layout>
           <section className='Layout__Container BuildDetails'>
-              { this.state.buildId && (
-                <BuildCard 
-                  buildId={ this.state.buildId }
-                  dispatch={ dispatch }
-                  status='details'
-                />
-              ) }
+            <BuildCard 
+              buildId={ this.props.match.params.buildId }
+              dispatch={ dispatch }
+              status='details'
+            />
           </section>
           { this.state.buildId && (
             <Logs buildId={ this.state.buildId } />

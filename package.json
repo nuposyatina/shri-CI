@@ -21,6 +21,7 @@
     "@babel/plugin-transform-destructuring": "^7.8.8",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "@svgr/parcel-plugin-svgr": "^5.3.1",
     "babel-jest": "^25.3.0",
     "classnames": "^2.2.6",
     "csscomb": "^4.3.0",
@@ -50,6 +51,7 @@
   "alias": {
     "library": "./frontend/src/components/library",
     "layouts": "./frontend/src/components/layouts",
-    "store": "./frontend/src/store"
+    "store": "./frontend/src/store",
+    "img": "./frontend/src/img"
   }
 }

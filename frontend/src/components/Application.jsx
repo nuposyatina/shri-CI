@@ -11,7 +11,7 @@ export default class Application extends Component {
     return (
       <Router history={ history }>
           <Switch>
-            <Route path='/build/:buildNumber' component={ Build } />
+            <Route path='/build/:buildId' component={ Build } />
             <Route path='/settings' component={ SettingsPage } />
             <Route path='/' component={ Root } />
           </Switch>
