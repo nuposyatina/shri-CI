@@ -10,7 +10,7 @@ export class Form extends Component {
   
     this.state = {
       repoName: '',
-      buildCommand: 'npm run build',
+      buildCommand: '',
       mainBranch: 'master',
       period: 100
     }
@@ -148,7 +148,6 @@ export class Form extends Component {
             name='cancel'
             className='Button Button_view_default Button_size_m Button_type_default'
             type='button'
-            disabled={ this.checkButtonDisabled() }
             onClick={ this.onCancelChanges }
           >
             Cancel
