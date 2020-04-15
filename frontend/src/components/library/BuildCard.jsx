@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { getBuildDetails } from '../../store/actions/buildDetails';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+import { formatDuration } from './lib';
 import moment from 'moment';
 import 'moment/locale/ru';
 
@@ -9,12 +10,6 @@ export class BuildCard extends Component {
   componentDidMount() {
     const { buildId, dispatch } = this.props;
     dispatch(getBuildDetails(buildId));
-  }
-
-  formatDuration(duration) {
-    const minutes = duration % 60;
-    const hours = Math.floor(duration / 60);
-    return `${hours} ч ${minutes} мин`
   }
 
   onSelectBuild(buildNumber, status) {
@@ -152,7 +147,7 @@ export class BuildCard extends Component {
                     <span
                       className='BuildCard__Time Text Text_size_s Text_view_primary'
                     >
-                      { this.formatDuration(currentBuild.duration) }
+                      { formatDuration(currentBuild.duration) }
                     </span>
                   </div>
                 ) }
