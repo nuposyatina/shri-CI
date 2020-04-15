@@ -16,11 +16,8 @@ describe("Main Page", () => {
       .url("/")
       .element('.Header')
       .click('.Button_role_settings')
-      .assertView("plain", "body", {
-        allowViewportOverflow: true,
-        compositeImage: true,
-        screenshotDelay: 500
-      });
+      .getUrl()
+      .then((url) => assert.equal(url, 'http://localhost:1234/settings'))
   });
 
   it("Клик на кнопку в основной части страницы переводит на страницу настроек", async function () {
@@ -28,10 +25,7 @@ describe("Main Page", () => {
       .url("/")
       .element('.SettingsPreview')
       .click('.Button')
-      .assertView("plain", "body", {
-        allowViewportOverflow: true,
-        compositeImage: true,
-        screenshotDelay: 500
-      });
+      .getUrl()
+      .then((url) => assert.equal(url, 'http://localhost:1234/settings'))
   });
 });
