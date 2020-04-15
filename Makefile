@@ -1,14 +1,14 @@
 install:
-	npm install
+	yarn install
 
 client:
-	npm start
+	yarn start
 
 server:
 	node backend/server.js
 
 test:
-	npm test
+	yarn test
 
 watch:
-	npm run watch
+	yarn watch
