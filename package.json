@@ -4,15 +4,17 @@
   "description": "SHRI Homework",
   "main": "frontend/src/index.html",
   "dependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "hermione": "^3.1.0",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.0",
     "simple-git": "^1.132.0"
   },
   "devDependencies": {
@@ -21,16 +23,22 @@
     "@babel/plugin-transform-destructuring": "^7.8.8",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "@svgr/parcel-plugin-svgr": "^5.3.1",
+    "babel-jest": "^25.3.0",
     "classnames": "^2.2.6",
     "csscomb": "^4.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "html-reporter": "^5.15.2",
+    "jest": "^25.3.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "parcel-bundler": "^1.12.4",
-    "react-text-mask": "^5.4.3",
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "test": "jest",
+    "watch": "jest --watch",
     "start": "parcel frontend/src/index.html"
   },
   "repository": {
@@ -46,6 +54,7 @@
   "alias": {
     "library": "./frontend/src/components/library",
     "layouts": "./frontend/src/components/layouts",
-    "store": "./frontend/src/store"
+    "store": "./frontend/src/store",
+    "img": "./frontend/src/img"
   }
 }

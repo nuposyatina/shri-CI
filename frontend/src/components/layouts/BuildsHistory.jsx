@@ -6,10 +6,10 @@ import Header from 'library/Header';
 import Modal from 'library/Modal';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import RunBuildIcon from 'img/runBuild.svg';
+import { getBuilds } from 'store/actions/buildsQueue';
 
-import { getBuilds } from '/store/actions/buildsQueue';
-
-class BuildsHistory extends Component {
+export class BuildsHistory extends Component {
   constructor(props) {
     super(props);
   
@@ -54,20 +54,11 @@ class BuildsHistory extends Component {
         >
           <div className='Header__Action'>
             <button
+              id='build'
               className='Header__Button Button Button_size_s Button_role_build Button_view_default Button_type_action Button_textVisible'
               onClick={ this.onOpenModal }
             >
-              <svg
-                className='Button__Icon Button__Icon_view_primary'
-                width="9"
-                height="10"
-                viewBox="0 0 9 10"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.28873 4.19256L1.41401 0.128275C0.855434 -0.20179 0 0.11851 0 0.934883V9.06151C0 9.7939 0.79489 10.2353 1.41401 9.86811L8.28873 5.80578C8.90198 5.44447 8.90394 4.55388 8.28873 4.19256Z"
-                />
-              </svg>
+              <RunBuildIcon className='Button__Icon Button__Icon_view_primary' />
               <span className='Button__Text'>Run build</span>
             </button>
             <Link
@@ -99,6 +90,7 @@ class BuildsHistory extends Component {
             />
             { !buildsQueue.allBuildsLoaded && (
               <button
+                id='show-more'
                 className='Button Button_view_default Button_size_s Button_type_default'
                 onClick={ this.onShowMoreBuilds }
               >Show more</button>
@@ -113,7 +105,6 @@ class BuildsHistory extends Component {
 
 export default connect((state) => {
   return {
-    build: state.build,
     buildsQueue: state.buildsQueue
   };
 })(BuildsHistory);

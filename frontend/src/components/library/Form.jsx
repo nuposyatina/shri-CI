@@ -4,19 +4,20 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import Field from './Field';
 
-class Form extends Component {
+export class Form extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
       repoName: '',
       buildCommand: '',
-      mainBranch: '',
-      period: ''
+      mainBranch: 'master',
+      period: 100
     }
 
     this.onCancelChanges = this.onCancelChanges.bind(this);
     this.onSaveChanges = this.onSaveChanges.bind(this);
+    this.onChangeMaskedInput = this.onChangeMaskedInput.bind(this)
   }
   
 
@@ -45,6 +46,15 @@ class Form extends Component {
     };
   }
 
+  onChangeMaskedInput(e) {
+    const { value } = e.target;
+    if (value === '') {
+      return this.setState({ period: 0 })
+    }
+    if (!parseFloat(value)) return;
+    this.setState({ period: parseFloat(value) })
+  }
+
   getOnClearInput(field) {
     return (e) => {
       const result = field === 'period' ? 0 : '';
@@ -54,8 +64,8 @@ class Form extends Component {
 
   checkButtonDisabled() {
     const { repoName, buildCommand } = this.state;
-    const { isSaved } = this.props.settings;
-    return repoName === '' || buildCommand === '' || !isSaved;
+    const { saving } = this.props.settings;
+    return !buildCommand || !repoName || saving;
   }
   
   onSaveChanges(e) {
@@ -114,12 +124,12 @@ class Form extends Component {
           <Field
             mods='Field_align_line Settings__SyncTimeField'
             type='number'
-            id='synctime'
+            id='period'
             labelText='Synchronize every'
             inputValue={ period }
             clearButton={ false }
-            onChange={ this.getOnChangeInput('period') }
-            onClear={ this.getOnClearInput('period') }
+            onChange={ this.onChangeMaskedInput }
+            onClear={ this.onChangeMaskedInput }
           >
             <span className='Field__Measure Text Text_size_s'>minutes</span>
           </Field>
@@ -127,6 +137,7 @@ class Form extends Component {
 
         <div className='Form__Action'>
           <button
+            name='submit'
             className='Button Button_view_submit Button_size_m Form__SubmitButton Button_type_default'
             type='submit'
             disabled={ this.checkButtonDisabled() }
@@ -134,14 +145,15 @@ class Form extends Component {
             Save
           </button>
           <button
+            name='cancel'
             className='Button Button_view_default Button_size_m Button_type_default'
             type='button'
-            disabled={ this.checkButtonDisabled() }
             onClick={ this.onCancelChanges }
           >
             Cancel
           </button>
         </div>
+        {this.props.settings.error && <p className='Text Text_view_fail Text_size_s ErrorText'>Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.</p>}
       </form>
     )
   }
