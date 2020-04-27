@@ -5,7 +5,7 @@ client:
 	yarn start
 
 server:
-	node backend/server.js
+	TS_NODE_FILES=1 node backend/server.ts -r ts-node/register
 
 test-u:
 	yarn test

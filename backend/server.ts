@@ -1,12 +1,12 @@
-const express = require('express');
-const path = require('path');
-const fetch = require('node-fetch');
-const https = require('https');
-const url = require('url');
-const util = require('util');
+import express from 'express';
+import path from 'path';
+import nodeFetch from 'node-fetch';
+import https from 'https';
+import url from 'url';
+import util from 'util';
 
 const exec = util.promisify(require('child_process').exec);
-const simpleGit = require('simple-git/promise');
+import simpleGit from 'simple-git/promise';
 
 const app = express();
 const agent = new https.Agent({
@@ -15,29 +15,49 @@ const agent = new https.Agent({
 const { AUTH_TOKEN } = require('dotenv').config().parsed;
 
 app.use(express.static(path.resolve(__dirname, 'static')));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+app.use((req: express.Request, res: express.Response, next) => {
+  const { origin } = req.headers;
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 });
 
-app.get('/api/settings', (req, res, next) => {
-  fetch('https://hw.shri.yandex/api/conf', {
+export type ResponseSettingsGet = {
+  data?: {
+    id: String,
+    repoName: String,
+    buildCommand: String,
+    mainBranch: String,
+    period: Number
+  }
+};
+
+app.get<{}, ResponseSettingsGet>('/api/settings', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  nodeFetch('https://hw.shri.yandex/api/conf', {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`
     },
     agent: agent
   }).
   then((result) => result.json()).
-  then((settings) => {
+  then((settings: ResponseSettingsGet) => {
     console.info('Settings received');
     return res.send(settings)
   }).
   catch((err) => next(err));
 });
 
-const readJSON = (req) => {
-  return new Promise((resolve, reject) => {
+export type RequestSettingsBody = {
+  repoName: String,
+  buildCommand: String,
+  mainBranch: String,
+  period: Number
+}
+
+const readJSON = (req: express.Request) => {
+  return new Promise<RequestSettingsBody>((resolve, reject) => {
     let rawBody = '';
     req.on('data', (chunk) => rawBody += chunk);
     req.once('end', () => {
@@ -51,13 +71,13 @@ const readJSON = (req) => {
   });
 };
 
-const cloneRepo = (repoName) => {
+const cloneRepo = (repoName: String) => {
   return exec('rm -rf repo').
   then(() => simpleGit().clone(`https://github.com/${repoName}`, './repo'));
 };
 
-const sendSettings = (body) => {
-  return fetch('https://hw.shri.yandex/api/conf', {
+const sendSettings = (body: RequestSettingsBody) => {
+  return nodeFetch('https://hw.shri.yandex/api/conf', {
     method: 'POST',
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`,
@@ -68,9 +88,11 @@ const sendSettings = (body) => {
   });
 };
 
-app.post('/api/settings', (req, res, next) => {
+export type ResponseSettingsPost = { status: 200 };
+
+app.post<{}, ResponseSettingsPost, RequestSettingsBody>('/api/settings', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   readJSON(req).
-  then(body => {
+  then((body: RequestSettingsBody) => {
     const { repoName } = body;
     return Promise.all([cloneRepo(repoName), sendSettings(body)]);
   }).
@@ -78,9 +100,25 @@ app.post('/api/settings', (req, res, next) => {
   catch((err) => next(err));
 });
 
-app.get('/api/builds', (req, res, next) => {
+export type Build = {
+  id: String,
+  configurationId: String,
+  buildNumber: Number,
+  commitMessage: String,
+  commitHash: String,
+  branchName: String,
+  authorName: String,
+  status: String, //заменить на enum
+  start?: String,
+  duration?: Number
+}
+export type ResponseBuildsGet = {
+  data?: Build[]
+}
+
+app.get<{}, ResponseBuildsGet>('/api/builds', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { search } = url.parse(req.originalUrl);
-  fetch(`https://hw.shri.yandex/api/build/list${search ? search : ''}`, {
+  nodeFetch(`https://hw.shri.yandex/api/build/list${search ? search : ''}`, {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`
     },
@@ -91,7 +129,7 @@ app.get('/api/builds', (req, res, next) => {
   catch((err) => next(err));
 });
 
-app.post('/api/builds/:commitHash', (req, res, next) => {
+app.post('/api/builds/:commitHash', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { commitHash } = req.params;
   const reqBody = {
     commitHash
@@ -105,11 +143,9 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
     reqBody.authorName = log
     return simpleGit('./repo').branch(['--contains', commitHash, '-a']);
   }).
-  // then(log => )
-  // }).
   then(log => {
     reqBody.branchName = log.current
-    return fetch('https://hw.shri.yandex/api/build/request', {
+    return nodeFetch('https://hw.shri.yandex/api/build/request', {
       method: 'POST',
       headers: { 
         'Authorization': `Bearer ${AUTH_TOKEN}`,
@@ -124,10 +160,10 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
   catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId/log', (req, res, next) => {
+app.get('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;
 
-  fetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {
+  nodeFetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`
     },
@@ -138,10 +174,10 @@ app.get('/api/builds/:buildId/log', (req, res, next) => {
   catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId', (req, res, next) => {
+app.get('/api/builds/:buildId', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;
 
-  fetch(`https://hw.shri.yandex/api/build/details?buildId=${buildId}`, {
+  nodeFetch(`https://hw.shri.yandex/api/build/details?buildId=${buildId}`, {
     headers: { 
       'Authorization': `Bearer ${AUTH_TOKEN}`
     },
