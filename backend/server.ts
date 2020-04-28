@@ -26,11 +26,11 @@ app.use((req: express.Request, res: express.Response, next) => {
 
 export type ResponseSettingsGet = {
   data?: {
-    id: String,
-    repoName: String,
-    buildCommand: String,
-    mainBranch: String,
-    period: Number
+    id: string,
+    repoName: string,
+    buildCommand: string,
+    mainBranch: string,
+    period: number
   }
 };
 
@@ -50,10 +50,10 @@ app.get<{}, ResponseSettingsGet>('/api/settings', (req: express.Request, res: ex
 });
 
 export type RequestSettingsBody = {
-  repoName: String,
-  buildCommand: String,
-  mainBranch: String,
-  period: Number
+  repoName: string,
+  buildCommand: string,
+  mainBranch: string,
+  period: number
 }
 
 const readJSON = (req: express.Request) => {
@@ -71,7 +71,7 @@ const readJSON = (req: express.Request) => {
   });
 };
 
-const cloneRepo = (repoName: String) => {
+const cloneRepo = (repoName: string) => {
   return exec('rm -rf repo').
   then(() => simpleGit().clone(`https://github.com/${repoName}`, './repo'));
 };
@@ -101,16 +101,16 @@ app.post<{}, ResponseSettingsPost, RequestSettingsBody>('/api/settings', (req: e
 });
 
 export type Build = {
-  id: String,
-  configurationId: String,
-  buildNumber: Number,
-  commitMessage: String,
-  commitHash: String,
-  branchName: String,
-  authorName: String,
-  status: String, //заменить на enum
-  start?: String,
-  duration?: Number
+  id: string,
+  configurationId: string,
+  buildNumber: number,
+  commitMessage: string,
+  commitHash: string,
+  branchName: string,
+  authorName: string,
+  status: string, //заменить на enum
+  start?: string,
+  duration?: number
 }
 export type ResponseBuildsGet = {
   data?: Build[]
@@ -129,10 +129,28 @@ app.get<{}, ResponseBuildsGet>('/api/builds', (req: express.Request, res: expres
   catch((err) => next(err));
 });
 
-app.post('/api/builds/:commitHash', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export type BuildInfoResponse = {
+  data: {
+    id: string,
+    buildNumber: number,
+    status: string //заменить на enum
+  }
+}
+
+export type BuildInfoRequest = {
+  commitMessage: string,
+  commitHash: string,
+  branchName: string,
+  authorName: string
+}
+
+app.post<{ commitHash: string }, BuildInfoResponse>('/api/builds/:commitHash', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { commitHash } = req.params;
-  const reqBody = {
-    commitHash
+  const reqBody: BuildInfoRequest = {
+    commitHash,
+    commitMessage: '',
+    branchName: '',
+    authorName: ''
   };
   simpleGit('./repo').show(['-s', '--format=%B', '-n', '1', commitHash]).
   then(log => {
@@ -160,7 +178,9 @@ app.post('/api/builds/:commitHash', (req: express.Request, res: express.Response
   catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export type BuildGetParam = { buildId: string };
+
+app.get<BuildGetParam, string>('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;
 
   nodeFetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {
@@ -174,7 +194,11 @@ app.get('/api/builds/:buildId/log', (req: express.Request, res: express.Response
   catch((err) => next(err));
 });
 
-app.get('/api/builds/:buildId', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export type BuildDetailsResponse = {
+  data: Build
+}
+
+app.get<BuildGetParam, BuildDetailsResponse>('/api/builds/:buildId', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;
 
   nodeFetch(`https://hw.shri.yandex/api/build/details?buildId=${buildId}`, {

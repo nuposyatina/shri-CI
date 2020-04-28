@@ -4,8 +4,11 @@ install:
 client:
 	yarn start
 
-server:
-	TS_NODE_FILES=1 node backend/server.ts -r ts-node/register
+server-build:
+	tsc -p tsconfig.json
+
+server-start:
+	node build/server.js
 
 test-u:
 	yarn test
