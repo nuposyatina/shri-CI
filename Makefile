@@ -5,10 +5,10 @@ client:
 	yarn start
 
 server-build:
-	tsc -p tsconfig.json
+	tsc -p backend/tsconfig.json
 
 server-start:
-	node build/server.js
+	node backend/build/server.js
 
 test-u:
 	yarn test
