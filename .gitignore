@@ -6,3 +6,5 @@ node_modules/
 /frontend/dist
 dist
 /build
+
+yarn-error.log

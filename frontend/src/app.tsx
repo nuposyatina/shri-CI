@@ -9,7 +9,7 @@ store.dispatch(getSettings());
 
 ReactDOM.render(
   <Provider store={ store }>
-    <Application />
+    <Application/>
   </Provider> ,
   window.document.getElementById('app')
 );
