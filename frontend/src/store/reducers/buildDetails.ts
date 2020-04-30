@@ -1,6 +1,8 @@
+import { MainAction } from '.';
+
 const initialState = {};
 
-const buildDetails = (state = initialState, action) => {
+const buildDetails = (state = initialState, action: MainAction) => {
   switch(action.type) {
     case 'GET_BUILD_DETAILS_SUCCESS':
       return {

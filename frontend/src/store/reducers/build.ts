@@ -1,3 +1,5 @@
+import { MainAction } from '.';
+
 const initialState = {
   commitHash: '',
   buildId: null,
@@ -5,7 +7,7 @@ const initialState = {
   status: null
 };
 
-const build = (state = initialState, action) => {
+const build = (state = initialState, action: MainAction) => {
   switch (action.type) {
     case 'SET_COMMIT_HASH':
       return {

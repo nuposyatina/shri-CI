@@ -1,10 +1,14 @@
+import { MainAction } from '.';
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+
 const initialState = {
   loading: false,
   isLoad: false,
   isSaved: true
 };
 
-const settings = (state = initialState, action) => {
+const settings = (state = initialState, action: MainAction) => {
   switch (action.type) {
     case 'GET_SETTINGS_STARTED':
       return {
