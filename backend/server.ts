@@ -24,6 +24,10 @@ app.use((req: express.Request, res: express.Response, next) => {
   next();
 });
 
+export type CommitHash = string;
+export type BuildId = string;
+export type LogString = string;
+
 export type ResponseSettingsGet = {
   data?: {
     id: string,
@@ -105,7 +109,7 @@ export type Build = {
   configurationId: string,
   buildNumber: number,
   commitMessage: string,
-  commitHash: string,
+  commitHash: CommitHash,
   branchName: string,
   authorName: string,
   status: string, //заменить на enum
@@ -139,12 +143,12 @@ export type BuildInfoResponse = {
 
 export type BuildInfoRequest = {
   commitMessage: string,
-  commitHash: string,
+  commitHash: CommitHash,
   branchName: string,
   authorName: string
 }
 
-app.post<{ commitHash: string }, BuildInfoResponse>('/api/builds/:commitHash', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.post<{ commitHash: CommitHash }, BuildInfoResponse>('/api/builds/:commitHash', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { commitHash } = req.params;
   const reqBody: BuildInfoRequest = {
     commitHash,
@@ -178,8 +182,7 @@ app.post<{ commitHash: string }, BuildInfoResponse>('/api/builds/:commitHash', (
   catch((err) => next(err));
 });
 
-export type BuildGetParam = { buildId: string };
-export type LogString = string;
+export type BuildGetParam = { buildId: BuildId };
 
 app.get<BuildGetParam, LogString>('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;

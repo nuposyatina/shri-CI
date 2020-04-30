@@ -1,6 +1,6 @@
 import { RequestSettingsBody, ResponseSettingsPost, ResponseSettingsGet } from 'backend/server';
 import { ThunkDispatch, ThunkAction } from 'redux-thunk';
-import { Action, Dispatch } from 'redux';
+import { Action } from 'redux';
 
 const getSettingsStarted = () => ({
   type: 'GET_SETTINGS_STARTED'
