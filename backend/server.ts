@@ -179,8 +179,9 @@ app.post<{ commitHash: string }, BuildInfoResponse>('/api/builds/:commitHash', (
 });
 
 export type BuildGetParam = { buildId: string };
+export type LogString = string;
 
-app.get<BuildGetParam, string>('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.get<BuildGetParam, LogString>('/api/builds/:buildId/log', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { buildId } = req.params;
 
   nodeFetch(`https://hw.shri.yandex/api/build/log?buildId=${buildId}`, {

@@ -1,4 +1,6 @@
 import { RequestSettingsBody, ResponseSettingsPost, ResponseSettingsGet } from 'backend/server';
+import { ThunkDispatch, ThunkAction } from 'redux-thunk';
+import { Action, Dispatch } from 'redux';
 
 const getSettingsStarted = () => ({
   type: 'GET_SETTINGS_STARTED'
@@ -62,15 +64,15 @@ const setSettingsRequest: (dispatch: Function, data: RequestSettingsBody) => Pro
   .catch((err) => dispatch(setSettingsError(err)))
 }
 
-export const getSettings = () => {
-  return (dispatch: Function) => {
+export const getSettings = (): ThunkAction<any, any, any, Action> => {
+  return (dispatch: ThunkDispatch<any, any, Action>) => {
     dispatch(getSettingsStarted());
     getSettingsRequest(dispatch);
   }
 };
 
-export const setSettings = (data: RequestSettingsBody) => {
-  return (dispatch: Function) => {
+export const setSettings = (data: RequestSettingsBody) : ThunkAction<any, any, any, Action> => {
+  return (dispatch: ThunkDispatch<any, any, Action>) => {
     dispatch(setSettingsStarted());
     setSettingsRequest(dispatch, data);
   }

@@ -1,11 +1,15 @@
-const getLogsSuccess = (data) => ({
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+import { LogString } from 'backend/server';
+
+const getLogsSuccess = (data: LogString) => ({
   type: 'GET_LOGS_SUCCESS',
   payload: {
     logs: data
   }
 });
-export const getLogs = (buildId) => {
-  return (dispatch) => {
+export const getLogs = (buildId: string): ThunkAction<any, any, any, Action> => {
+  return (dispatch: ThunkDispatch<any, any, Action>) => {
     fetch(`http://localhost:3000/api/builds/${buildId}/log`).
     then((response) => {
       return response.text()

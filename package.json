@@ -31,6 +31,7 @@
     "@types/react-dom": "^16.9.7",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.5",
+    "@types/redux-thunk": "^2.1.0",
     "babel-jest": "^25.3.0",
     "classnames": "^2.2.6",
     "csscomb": "^4.3.0",
