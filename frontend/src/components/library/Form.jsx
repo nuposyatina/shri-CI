@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { getSettings, setSettings } from '../../store/actions/settings';
+import { getSettings, setSettings } from 'store/actions/settings';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Field from './Field';
+import Field from 'library/Field';
 
 export class Form extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import BuildCard from './BuildCard';
+import BuildCard from 'library/BuildCard';
 import { Dispatch } from 'redux';
 import { Build } from 'backend/server';
 

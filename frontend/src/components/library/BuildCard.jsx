@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { getBuildDetails } from 'store/actions/buildDetails';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import { formatDuration } from './lib.ts';
+import { formatDuration } from 'library/lib';
 import SuccessIcon from 'img/success.svg';
 import ProgressIcon from 'img/progress.svg';
 import FailIcon from 'img/fail.svg';

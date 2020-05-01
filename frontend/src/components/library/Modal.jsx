@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Field from './Field';
-import { runBuild } from '../../store/actions/build';
+import Field from 'library/Field';
+import { runBuild } from 'store/actions/build';
 
 export default class Modal extends Component {
   constructor(props) {
@@ -59,4 +59,4 @@ export default class Modal extends Component {
       </form>
     )
   }
-}
+};
