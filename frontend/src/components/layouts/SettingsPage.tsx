@@ -3,6 +3,7 @@ import Header from 'library/Header';
 import Layout from 'library/Layout';
 import Footer from 'library/Footer';
 import Form from 'library/Form';
+import { History } from 'history';
 
 const SettingsPage: React.FC<{ history: History }> = ({ history }) => (
   <Fragment>

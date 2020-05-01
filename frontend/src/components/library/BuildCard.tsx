@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { getBuildDetails } from 'store/actions/buildDetails';
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import cx from 'classnames';
 import { formatDuration } from 'library/lib';
 import SuccessIcon from 'img/success.svg';
@@ -13,16 +13,24 @@ import ClockIcon from 'img/clock.svg';
 //TODO: учитывать таймзону
 import moment from 'moment';
 import 'moment/locale/ru';
+import { History } from 'history';
 
-export class BuildCard extends Component {  
+export interface BuildCardProps {
+  buildId: string;
+  buildDetails: string;
+  status: string;
+  dispatch;
+  history: History;
+};
+
+export class BuildCard extends Component<BuildCardProps> {
   componentDidMount() {
     const { buildId, dispatch } = this.props;
     dispatch(getBuildDetails(buildId));
   }
 
-  onSelectBuild(buildId, status) {
+  onSelectBuild(buildId: string) {
     return () => {
-      // if (!(status === 'Success' || status == 'Fail')) return;
       this.props.history.push(`/build/${buildId}`);
     }
   }
@@ -34,7 +42,7 @@ export class BuildCard extends Component {
       <Fragment>
       { currentBuild && (
         <a
-          onClick={ this.onSelectBuild(buildId, currentBuild.status) }
+          onClick={ this.onSelectBuild(buildId) }
           className={`BuildCard BuildCard_status_${status}`}
         >
           <div className='BuildCard__Content'>
@@ -130,8 +138,8 @@ export class BuildCard extends Component {
   }
 }
 
-export default connect((state) => {
+export default connect((state: RootStateOrAny) => {
   return {
     buildDetails: state.buildDetails
   };
-})(BuildCard);
+}, null)(BuildCard);

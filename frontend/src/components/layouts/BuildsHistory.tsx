@@ -10,6 +10,7 @@ import RunBuildIcon from 'img/runBuild.svg';
 import SettingsIcon from 'img/settings.svg';
 import { getBuilds } from 'store/actions/buildsQueue';
 import { Build } from 'backend/server';
+import { History } from 'history';
 
 interface BuildHistoryProps {
   // не смогла подобрать тип :(

@@ -1,15 +1,17 @@
 import React from 'react';
 import BuildCard from 'library/BuildCard';
-import { Dispatch } from 'redux';
 import { Build } from 'backend/server';
+import { History } from 'history';
 
 export interface BuildsProps {
   builds: Build[];
-  dispatch: Dispatch;
+  dispatch;
   history: History;
 }
 
-const Builds: React.FC<BuildsProps> = ({ builds, dispatch, history }) => (
+const Builds: React.FC<BuildsProps> = (props: BuildsProps) => {
+  const { builds, dispatch, history } = props;
+  return (
   <ul className='Builds'>
     { 
       builds.map(build => (
@@ -23,6 +25,6 @@ const Builds: React.FC<BuildsProps> = ({ builds, dispatch, history }) => (
       ))
     }
   </ul>
-);
+)};
 
 export default Builds;

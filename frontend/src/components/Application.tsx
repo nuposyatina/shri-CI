@@ -6,7 +6,7 @@ import Root from 'layouts/Root';
 
 import { history } from 'store/configureStore';
 
-export default class Application extends Component {
+export default class Application extends Component<{}> {
   render() {
     return (
       <Router history={ history }>
