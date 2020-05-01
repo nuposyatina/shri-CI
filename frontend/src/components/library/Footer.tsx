@@ -10,6 +10,6 @@ const Footer: React.FC<{}> = () => (
       <div className='Footer__Copyright Text Text_size_s Text_view_secondary'>© 2020 Your Name</div>
     </div>
   </footer>
-)
+);
 
 export default Footer;

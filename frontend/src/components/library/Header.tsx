@@ -20,6 +20,6 @@ const Header: React.FC<HeaderProps> = ({ headerText, headerView, children }) => 
       { children }
     </div>
   </header>
-)
+);
 
 export default Header;
