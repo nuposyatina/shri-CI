@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BuildsHistory from 'layouts/BuildsHistory';
 import Main from 'layouts/Main';
+
 class Root extends Component {
   
   render() {
