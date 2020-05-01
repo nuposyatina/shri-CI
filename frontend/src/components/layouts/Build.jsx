@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import Header from 'library/Header';
+import Header from 'library/Header.tsx';
 import Layout from 'library/Layout';
 import Footer from 'library/Footer';
 import BuildCard from 'library/BuildCard';
