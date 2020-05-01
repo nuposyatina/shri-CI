@@ -3,8 +3,8 @@ import { Action } from 'redux';
 import { Build } from 'backend/server';
 
 export type LimitOffsetParams = {
-  limit: string | undefined,
-  offset: string | undefined
+  limit: number | undefined,
+  offset: number | undefined
 }
 
 const getQueryParams = ({ offset, limit }: LimitOffsetParams) => {

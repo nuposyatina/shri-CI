@@ -5,13 +5,33 @@ import Builds from 'library/Builds';
 import Header from 'library/Header';
 import Modal from 'library/Modal';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import RunBuildIcon from 'img/runBuild.svg';
 import SettingsIcon from 'img/settings.svg';
 import { getBuilds } from 'store/actions/buildsQueue';
+import { Build } from 'backend/server';
 
-export class BuildsHistory extends Component {
-  constructor(props) {
+interface BuildHistoryProps {
+  // не смогла подобрать тип :(
+  dispatch;
+  settings: {
+    repoName: string;
+  };
+  history: History;
+  buildsQueue: {
+    allBuildsLoaded: boolean;
+    builds: Build[];
+  };
+}
+
+interface BuildHistoryState {
+  showModal?: Boolean;
+  offset: number;
+  limit: number;
+}
+
+export class BuildsHistory extends Component<BuildHistoryProps, BuildHistoryState> {
+  constructor(props: BuildHistoryProps) {
     super(props);
   
     this.state = {
@@ -96,7 +116,7 @@ export class BuildsHistory extends Component {
   }
 };
 
-export default connect((state) => {
+export default connect((state: RootStateOrAny) => {
   return {
     buildsQueue: state.buildsQueue
   };
