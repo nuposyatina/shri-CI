@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export interface HeaderProps {
   headerText: string;
   headerView: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Header: React.FC<HeaderProps> = ({ headerText, headerView, children }) => (

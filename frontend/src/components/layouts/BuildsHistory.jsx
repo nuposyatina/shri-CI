@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import Footer from 'library/Footer.tsx';
+import Footer from 'library/Footer';
 import Layout from 'library/Layout';
 import Builds from 'library/Builds';
-import Header from 'library/Header.tsx';
+import Header from 'library/Header';
 import Modal from 'library/Modal';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
