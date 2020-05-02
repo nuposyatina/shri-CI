@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import Field from 'library/Field';
 import { runBuild } from 'store/actions/build';
 
-export default class Modal extends Component {
+export interface ModalProps {
+  dispatch;
+  onClose: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+};
+
+export interface ModalState {
+  commitHash: string;
+};
+
+export default class Modal extends Component<ModalProps, ModalState> {
   constructor(props) {
     super(props)
   
@@ -55,7 +64,6 @@ export default class Modal extends Component {
             Cancel
           </button>
         </div>
-
       </form>
     )
   }

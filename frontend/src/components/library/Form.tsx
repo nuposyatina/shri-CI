@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
 import { getSettings, setSettings } from 'store/actions/settings';
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import _ from 'lodash';
 import Field from 'library/Field';
+import { History } from 'history';
 
-export class Form extends Component {
+export interface FormProps {
+  settings: {
+    isLoad: boolean;
+    repoName: string;
+    buildCommand: string;
+    mainBranch: string;
+    period: number;
+    saving: boolean;
+    error: boolean;
+  };
+  dispatch;
+  history: History;
+};
+
+export interface FormState {
+  repoName: string;
+  buildCommand: string;
+  mainBranch: string;
+  period: number;
+}
+
+export class Form extends Component<FormProps, FormState> {
   constructor(props) {
     super(props)
   
@@ -17,7 +39,7 @@ export class Form extends Component {
 
     this.onCancelChanges = this.onCancelChanges.bind(this);
     this.onSaveChanges = this.onSaveChanges.bind(this);
-    this.onChangeMaskedInput = this.onChangeMaskedInput.bind(this)
+    this.onChangeMaskedInput = this.onChangeMaskedInput.bind(this);
   }
   
 
@@ -25,7 +47,7 @@ export class Form extends Component {
     this.props.dispatch(getSettings());
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: FormProps, prevState: FormState) {
     const { isLoad, repoName, buildCommand, mainBranch, period } = this.props.settings;
     const stateIsNotChanged = _.isEqual(prevState, this.state);
     if (isLoad === true && isLoad !== prevProps.settings.isLoad && stateIsNotChanged) {
@@ -38,11 +60,15 @@ export class Form extends Component {
     }
   }
 
-  getOnChangeInput(field) {
-    return (e) => {
+  getOnChangeInput(field: keyof FormState) {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       const result = field === 'period' ? +value : value;
-      this.setState({ [field]: result });
+      //пришлось заменить на callback, так как TS выдавал ошибку
+      this.setState((prevState) => ({
+        ...prevState,
+        [field]: result
+      }));
     };
   }
 
@@ -55,10 +81,14 @@ export class Form extends Component {
     this.setState({ period: parseFloat(value) })
   }
 
-  getOnClearInput(field) {
-    return (e) => {
+  getOnClearInput(field: keyof FormState) {
+    return (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       const result = field === 'period' ? 0 : '';
-      this.setState({ [field]: result });
+      //пришлось заменить на callback, так как TS выдавал ошибку
+      this.setState((prevState) => ({
+        ...prevState,
+        [field]: result
+      }));
     }
   }
 
@@ -123,7 +153,6 @@ export class Form extends Component {
           />
           <Field
             mods='Field_align_line Settings__SyncTimeField'
-            type='number'
             id='period'
             labelText='Synchronize every'
             inputValue={ period }
@@ -159,7 +188,7 @@ export class Form extends Component {
   }
 }
 
-export default connect((state) => {
+export default connect((state: RootStateOrAny) => {
   return {
     settings: state.settings
   };

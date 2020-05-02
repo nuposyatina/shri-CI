@@ -3,13 +3,13 @@ import ClearIcon from 'img/clear.svg';
 
 export interface FieldProps {
   id: string
-  required: Boolean;
-  labelText: string | undefined;
+  required?: Boolean;
+  labelText?: string | undefined;
   inputValue: string | number;
-  children: React.ReactNode;
-  mods: string;
+  children?: React.ReactNode;
+  mods?: string;
   clearButton: Boolean;
-  placeholder: string;
+  placeholder?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClear: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };

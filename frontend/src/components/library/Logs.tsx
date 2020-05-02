@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import { getLogs } from 'store/actions/logs';
 
-class Logs extends Component {
+export interface LogProps {
+  buildId: string;
+  dispatch;
+  logs: string;
+}
+
+class Logs extends Component<LogProps> {
 
   componentDidMount() {
     this.props.dispatch(getLogs(this.props.buildId));
@@ -21,7 +27,7 @@ class Logs extends Component {
   }
 }
 
-export default connect((state) => {
+export default connect((state: RootStateOrAny) => {
   return {
     logs: state.logs
   };

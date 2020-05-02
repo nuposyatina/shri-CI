@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import SettingsIcon from 'img/settings.svg';
 import RebuildIcon from 'img/rebuild.svg';
 import { Dispatch } from 'redux';
+import { History } from 'history';
 
 export interface BuildProps {
   dispatch: Dispatch;
@@ -19,9 +20,10 @@ export interface BuildProps {
     params: {
       buildId: string;
     }
-  }
+  },
+  history: History
 }
-const Build: React.FC<BuildProps> = ({ dispatch, settings, match }) => (
+const Build: React.FC<BuildProps> = ({ dispatch, settings, match, history }) => (
   <Fragment>
     <Header 
       headerText={ settings.repoName }
@@ -44,6 +46,7 @@ const Build: React.FC<BuildProps> = ({ dispatch, settings, match }) => (
           buildId={ match.params.buildId }
           dispatch={ dispatch }
           status='details'
+          history={ history }
         />
       </section>
       <Logs buildId={ match.params.buildId } />
