@@ -15,7 +15,9 @@
     "url": "https://github.com/nuposyatina/shri-CI/issues"
   },
   "homepage": "https://github.com/nuposyatina/shri-CI#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/express": "^4.17.6"
+  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

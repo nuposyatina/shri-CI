@@ -4,8 +4,11 @@ install:
 client:
 	yarn start
 
-server:
-	node backend/server.js
+server-build:
+	tsc -p backend/tsconfig.json
+
+server-start:
+	node backend/build/server.js
 
 test-u:
 	yarn test
