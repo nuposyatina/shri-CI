@@ -39,7 +39,8 @@
   "scripts": {
     "test": "jest",
     "watch": "jest --watch",
-    "start": "parcel frontend/src/index.html"
+    "start": "parcel frontend/src/index.html",
+    "build": "parcel build frontend/src/index.html "
   },
   "repository": {
     "type": "git",
