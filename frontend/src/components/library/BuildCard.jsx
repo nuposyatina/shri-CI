@@ -28,7 +28,7 @@ export class BuildCard extends Component {
   }
 
   render() {
-    const { buildDetails, buildId, status } = this.props;
+    const { buildDetails, buildId, status, locales } = this.props;
     const currentBuild = buildDetails[buildId];
     return (
       <Fragment>
@@ -106,7 +106,7 @@ export class BuildCard extends Component {
                     dateTime='2020-01-21 03:06'
                   >
                     {
-                      moment(currentBuild.start).locale('ru').format("D MMM HH:mm")
+                      moment(currentBuild.start).locale(locales.currentLanguage).format("D MMM HH:mm")
                     }
                   </time>
                 </div>
