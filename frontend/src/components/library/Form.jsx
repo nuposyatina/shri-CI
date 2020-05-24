@@ -161,6 +161,7 @@ export class Form extends Component {
 
 export default connect((state) => {
   return {
-    settings: state.settings
+    settings: state.settings,
+    locales: state.locales
   };
 })(Form);

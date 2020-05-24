@@ -70,6 +70,7 @@ export default connect((state) => {
     build: state.build,
     buildsQueue: state.buildsQueue,
     buildDetails: state.buildDetails,
-    settings: state.settings
+    settings: state.settings,
+    locales: state.locales
   };
 })(Build);

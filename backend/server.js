@@ -4,6 +4,10 @@ const fetch = require('node-fetch');
 const https = require('https');
 const url = require('url');
 const util = require('util');
+const ru = require('./lang/ru/index.json');
+const en = require('./lang/en/index.json');
+
+const supportedLanguages = { ru, en };
 
 const exec = util.promisify(require('child_process').exec);
 const simpleGit = require('simple-git/promise');
@@ -19,6 +23,12 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
+});
+
+app.get('/api/locales', (req, res, next) => {
+  const supportedLanguages = { ru, en };
+  const { lang } = req.query;
+  res.send(supportedLanguages[lang]);
 });
 
 app.get('/api/settings', (req, res, next) => {

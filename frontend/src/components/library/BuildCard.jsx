@@ -132,6 +132,7 @@ export class BuildCard extends Component {
 
 export default connect((state) => {
   return {
-    buildDetails: state.buildDetails
+    buildDetails: state.buildDetails,
+    locales: state.locales
   };
 })(BuildCard);

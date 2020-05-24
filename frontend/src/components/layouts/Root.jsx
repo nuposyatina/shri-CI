@@ -18,6 +18,7 @@ class Root extends Component {
 
 export default connect((state) => {
   return {
-    settings: state.settings
+    settings: state.settings,
+    locales: state.locales
   };
 })(Root);

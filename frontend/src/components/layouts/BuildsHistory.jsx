@@ -105,6 +105,7 @@ export class BuildsHistory extends Component {
 
 export default connect((state) => {
   return {
-    buildsQueue: state.buildsQueue
+    buildsQueue: state.buildsQueue,
+    locales: state.locales
   };
 })(BuildsHistory);
