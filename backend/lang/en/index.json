@@ -21,5 +21,8 @@
   "Settings_Sync": "Synchronize every # minutes",
   "Settings_SaveButton": "Save",
   "Settings_CancelButton": "Cancel",
-  "BuildsHistory_LoadButton": "Show More"
+  "BuildsHistory_LoadButton": "Show More",
+  "Build_hours": "h",
+  "Build_minutes": "m",
+  "Build_seconds": "s"
 }

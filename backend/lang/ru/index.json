@@ -21,5 +21,8 @@
   "Settings_Sync": "Синхронизация каждые # минуты",
   "Settings_SaveButton": "Сохранить",
   "Settings_CancelButton": "Отменить",
-  "BuildsHistory_LoadButton": "Загрузить еще"
+  "BuildsHistory_LoadButton": "Загрузить еще",
+  "Build_hours": "ч",
+  "Build_minutes": "мин",
+  "Build_seconds": "сек"
 }

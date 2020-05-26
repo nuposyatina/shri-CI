@@ -110,7 +110,7 @@ export class BuildCard extends Component {
                     }
                   </time>
                 </div>
-                { currentBuild.duration && (
+                { (currentBuild.duration || currentBuild.duration === 0) && (
                   <div className='BuildCard__TimeInfo'>
                     <ClockIcon className='BuildCard__Icon' />
                     <span

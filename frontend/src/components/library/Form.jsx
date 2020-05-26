@@ -88,8 +88,12 @@ export class Form extends Component {
     return (
       <form action='' className='Form' onSubmit={ this.onSaveChanges }>
         <div className='Form__Header'>
-          <h2 className='Title Form__Title Text Text_size_m Text_view_primary'>{ localize('Settings_FormTitle') }</h2>
-          <p className='Form__Description Text Text_size_s Text_view_secondary'>{ localize('Settings_FormDescription') }</p>
+          <h2 className='Title Form__Title Text Text_size_m Text_view_primary'>
+            { localize('Settings_FormTitle') }
+          </h2>
+          <p className='Form__Description Text Text_size_s Text_view_secondary'>
+            { localize('Settings_FormDescription') }
+          </p>
         </div>
 
         <div className='Form__Content'>
@@ -126,13 +130,13 @@ export class Form extends Component {
             mods='Field_align_line Settings__SyncTimeField'
             type='number'
             id='period'
-            labelText='Synchronize every'
+            labelText={ localize('Settings_Sync').split('#')[0] }
             inputValue={ period }
             clearButton={ false }
             onChange={ this.onChangeMaskedInput }
             onClear={ this.onChangeMaskedInput }
           >
-            <span className='Field__Measure Text Text_size_s'>minutes</span>
+            <span className='Field__Measure Text Text_size_s'>{ localize('Settings_Sync').split('#')[1] }</span>
           </Field>
         </div>
 

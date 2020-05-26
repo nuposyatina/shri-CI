@@ -7,7 +7,6 @@ export const getLang = () => {
 };
 
 export const localize = (key) => {
-  console.log(key)
   const { locales } = store.getState();
   const { currentLanguage } = locales;
   return locales[currentLanguage] ? locales[currentLanguage][key] : key;
