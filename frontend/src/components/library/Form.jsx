@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import Field from './Field';
 import { localize } from 'lib';
+import { declination } from './lib';
 
 export class Form extends Component {
   constructor(props) {
@@ -45,6 +46,19 @@ export class Form extends Component {
       const result = field === 'period' ? +value : value;
       this.setState({ [field]: result });
     };
+  }
+
+  getSyncText(word) {
+    const { period } = this.state;
+    const currentText = declination(
+      period,
+      [
+        localize('Settings_Sync_one'),
+        localize('Settings_Sync_few'),
+        localize('Settings_Sync_more')]
+    );
+    const [first, second] = currentText.split('#');
+    return word === 'first' ? first : second;
   }
 
   onChangeMaskedInput(e) {
@@ -130,13 +144,15 @@ export class Form extends Component {
             mods='Field_align_line Settings__SyncTimeField'
             type='number'
             id='period'
-            labelText={ localize('Settings_Sync').split('#')[0] }
+            labelText={ this.getSyncText('first') }
             inputValue={ period }
             clearButton={ false }
             onChange={ this.onChangeMaskedInput }
             onClear={ this.onChangeMaskedInput }
           >
-            <span className='Field__Measure Text Text_size_s'>{ localize('Settings_Sync').split('#')[1] }</span>
+            <span className='Field__Measure Text Text_size_s'>
+              { this.getSyncText('second') }
+            </span>
           </Field>
         </div>
 
@@ -158,7 +174,13 @@ export class Form extends Component {
             { localize('Settings_CancelButton') }
           </button>
         </div>
-        {this.props.settings.error && <p className='Text Text_view_fail Text_size_s ErrorText'>Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.</p>}
+        {
+          this.props.settings.error && (
+            <p className='Text Text_view_fail Text_size_s ErrorText'>
+              { localize('Settings_ErrorText') }
+            </p>
+          )
+        }
       </form>
     )
   }

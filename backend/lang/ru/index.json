@@ -18,11 +18,19 @@
   "Settings_BuildCommand_default": "npm ci &amp;&amp; npm run build",
   "Settings_MainBranch": "Основная ветка",
   "Settings_MainBranch_default": "master",
-  "Settings_Sync": "Синхронизация каждые # минуты",
+  "Settings_Sync_one": "Синхронизация каждую # минуту",
+  "Settings_Sync_few": "Синхронизация каждые # минуты",
+  "Settings_Sync_more": "Синхронизация каждые # минут",
   "Settings_SaveButton": "Сохранить",
   "Settings_CancelButton": "Отменить",
+  "Settings_ErrorText": "Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.",
   "BuildsHistory_LoadButton": "Загрузить еще",
   "Build_hours": "ч",
   "Build_minutes": "мин",
-  "Build_seconds": "сек"
+  "Build_seconds": "сек",
+  "Modal_Title": "Новый билд",
+  "Modal_Description": "Введите хеш коммита, который вы хотите собрать",
+  "Modal_Placeholder": "Хеш коммита",
+  "Modal_RunButton": "Запустить сборку",
+  "Modal_CancelButton": "Отменить"
 }

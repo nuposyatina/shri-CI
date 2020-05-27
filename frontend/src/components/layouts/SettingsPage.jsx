@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Header from 'library/Header';
 import Layout from 'library/Layout';
 import Footer from 'library/Footer';
@@ -10,7 +10,7 @@ export default ({ history }) => {
   return (
     <Fragment>
       <Header
-        headerText={ localize("Main_Header") }
+        headerText={ localize('Main_Header') }
         headerView='secondary'
       />
       <Layout>

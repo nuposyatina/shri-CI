@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Field from './Field';
-import { runBuild } from '../../store/actions/build';
+import Field from 'library/Field';
+import { runBuild } from 'store/actions/build';
+import { localize } from 'lib';
 
 export default class Modal extends Component {
   constructor(props) {
@@ -30,17 +31,21 @@ export default class Modal extends Component {
   render() {
     const { commitHash } = this.state;
     return (
-      <form action="" className='Modal' onSubmit={ this.onRunBuild }>
+      <form
+        action=""
+        className='Modal'
+        onSubmit={ this.onRunBuild }
+      >
         <h2 className='Modal__Header Text Text_size_xl Text_view_primary'>
-          New build
+          { localize('Modal_Title') }
         </h2>
         <p className='Modal__Description Text Text_size_s Text_view_primary'>
-          Enter the commit hash which you want to build
+          { localize('Modal_Description') }
         </p>
         <Field
           mods='Modal__Field'
           id='hash'
-          placeholder='Commit hash'
+          placeholder={ localize('Modal_Placeholder') }
           inputValue={ commitHash }
           required
           clearButton
@@ -48,14 +53,20 @@ export default class Modal extends Component {
           onClear={ this.onClearInput }
         />
         <div className='Modal__Action'>
-          <button className='Button Button_view_submit Button_size_m Button_type_default Modal__SubmitButton' type="submit">
-            Run Build
+          <button
+            className='Button Button_view_submit Button_size_m Button_type_default Modal__SubmitButton'
+            type="submit"
+          >
+            { localize('Modal_RunButton') }
           </button>
-          <button className='Button Button_view_default Button_size_m Button_type_default' type='button' onClick={ this.props.onClose }>
-            Cancel
+          <button
+            className='Button Button_view_default Button_size_m Button_type_default'
+            type='button'
+            onClick={ this.props.onClose }
+          >
+            { localize('Modal_CancelButton') }
           </button>
         </div>
-
       </form>
     )
   }

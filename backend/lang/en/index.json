@@ -18,11 +18,19 @@
   "Settings_BuildCommand_default": "npm ci && npm run build",
   "Settings_MainBranch": "Main branch",
   "Settings_MainBranch_default": "master",
-  "Settings_Sync": "Synchronize every # minutes",
+  "Settings_Sync_one": "Synchronize every # minute",
+  "Settings_Sync_few": "Synchronize every # minutes",
+  "Settings_Sync_more": "Synchronize every # minutes",
   "Settings_SaveButton": "Save",
   "Settings_CancelButton": "Cancel",
+  "Settings_ErrorText": "An error occurred while saving the settings. Check that the data entered is correct.",
   "BuildsHistory_LoadButton": "Show More",
   "Build_hours": "h",
   "Build_minutes": "m",
-  "Build_seconds": "s"
+  "Build_seconds": "s",
+  "Modal_Title": "New build",
+  "Modal_Description": "Enter the commit hash which you want to build",
+  "Modal_Placeholder": "Commit hash",
+  "Modal_RunButton": "Run Build",
+  "Modal_CancelButton": "Cancel"
 }
