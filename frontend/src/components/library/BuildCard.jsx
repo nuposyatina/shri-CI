@@ -28,7 +28,7 @@ export class BuildCard extends Component {
   }
 
   render() {
-    const { buildDetails, buildId, status } = this.props;
+    const { buildDetails, buildId, status, locales } = this.props;
     const currentBuild = buildDetails[buildId];
     return (
       <Fragment>
@@ -106,11 +106,11 @@ export class BuildCard extends Component {
                     dateTime='2020-01-21 03:06'
                   >
                     {
-                      moment(currentBuild.start).locale('ru').format("D MMM HH:mm")
+                      moment(currentBuild.start).locale(locales.currentLanguage).format("D MMM HH:mm")
                     }
                   </time>
                 </div>
-                { currentBuild.duration && (
+                { (currentBuild.duration || currentBuild.duration === 0) && (
                   <div className='BuildCard__TimeInfo'>
                     <ClockIcon className='BuildCard__Icon' />
                     <span
@@ -132,6 +132,7 @@ export class BuildCard extends Component {
 
 export default connect((state) => {
   return {
-    buildDetails: state.buildDetails
+    buildDetails: state.buildDetails,
+    locales: state.locales
   };
 })(BuildCard);

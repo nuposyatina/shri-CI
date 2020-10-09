@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { getSettings, setSettings } from '../../store/actions/settings';
+import { getSettings, setSettings } from 'store/actions/settings';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Field from './Field';
+import { localize } from 'lib';
+import { declination } from './lib';
 
 export class Form extends Component {
   constructor(props) {
@@ -46,6 +48,19 @@ export class Form extends Component {
     };
   }
 
+  getSyncText(word) {
+    const { period } = this.state;
+    const currentText = declination(
+      period,
+      [
+        localize('Settings_Sync_one'),
+        localize('Settings_Sync_few'),
+        localize('Settings_Sync_more')]
+    );
+    const [first, second] = currentText.split('#');
+    return word === 'first' ? first : second;
+  }
+
   onChangeMaskedInput(e) {
     const { value } = e.target;
     if (value === '') {
@@ -87,15 +102,19 @@ export class Form extends Component {
     return (
       <form action='' className='Form' onSubmit={ this.onSaveChanges }>
         <div className='Form__Header'>
-          <h2 className='Title Form__Title Text Text_size_m Text_view_primary'>Settings</h2>
-          <p className='Form__Description Text Text_size_s Text_view_secondary'>Configure repository connection and synchronization settings</p>
+          <h2 className='Title Form__Title Text Text_size_m Text_view_primary'>
+            { localize('Settings_FormTitle') }
+          </h2>
+          <p className='Form__Description Text Text_size_s Text_view_secondary'>
+            { localize('Settings_FormDescription') }
+          </p>
         </div>
 
         <div className='Form__Content'>
           <Field
             id='repository'
-            placeholder='user-name/repo-name'
-            labelText='GitHub repository'
+            placeholder={ localize('Settings_RepoName_placeholder') }
+            labelText={ localize('Settings_RepoName') }
             inputValue={ repoName }
             required
             clearButton
@@ -104,8 +123,8 @@ export class Form extends Component {
           />
           <Field
             id='command'
-            placeholder='npm run build'
-            labelText='Build command'
+            placeholder={ localize('Settings_BuildCommand_default') }
+            labelText={ localize('Settings_BuildCommand') }
             inputValue={ buildCommand }
             required
             clearButton
@@ -114,8 +133,8 @@ export class Form extends Component {
           />
           <Field
             id='branch'
-            placeholder='master'
-            labelText='Main Branch'
+            placeholder={ localize('Settings_MainBranch_default') }
+            labelText={ localize('Settings_MainBranch') }
             inputValue={ mainBranch }
             clearButton
             onChange={ this.getOnChangeInput('mainBranch') }
@@ -125,13 +144,15 @@ export class Form extends Component {
             mods='Field_align_line Settings__SyncTimeField'
             type='number'
             id='period'
-            labelText='Synchronize every'
+            labelText={ this.getSyncText('first') }
             inputValue={ period }
             clearButton={ false }
             onChange={ this.onChangeMaskedInput }
             onClear={ this.onChangeMaskedInput }
           >
-            <span className='Field__Measure Text Text_size_s'>minutes</span>
+            <span className='Field__Measure Text Text_size_s'>
+              { this.getSyncText('second') }
+            </span>
           </Field>
         </div>
 
@@ -142,7 +163,7 @@ export class Form extends Component {
             type='submit'
             disabled={ this.checkButtonDisabled() }
           >
-            Save
+            { localize('Settings_SaveButton') }
           </button>
           <button
             name='cancel'
@@ -150,10 +171,16 @@ export class Form extends Component {
             type='button'
             onClick={ this.onCancelChanges }
           >
-            Cancel
+            { localize('Settings_CancelButton') }
           </button>
         </div>
-        {this.props.settings.error && <p className='Text Text_view_fail Text_size_s ErrorText'>Во время сохранения настроек возникла ошибка. Проверьте правильность введенных данных.</p>}
+        {
+          this.props.settings.error && (
+            <p className='Text Text_view_fail Text_size_s ErrorText'>
+              { localize('Settings_ErrorText') }
+            </p>
+          )
+        }
       </form>
     )
   }
@@ -161,6 +188,7 @@ export class Form extends Component {
 
 export default connect((state) => {
   return {
-    settings: state.settings
+    settings: state.settings,
+    locales: state.locales
   };
 })(Form);

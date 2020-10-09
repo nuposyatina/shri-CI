@@ -8,6 +8,7 @@ import Logs from 'library/Logs';
 import { Link } from 'react-router-dom';
 import SettingsIcon from 'img/settings.svg';
 import RebuildIcon from 'img/rebuild.svg';
+import { localize } from 'lib';
 
 class Build extends Component {
   constructor(props) {
@@ -16,16 +17,6 @@ class Build extends Component {
     this.state = {
       buildId: null
     }
-  }
-  
-
-  componentDidMount() {
-    // const { buildId } = this.props.match.params;
-    // const { builds } = this.props.buildsQueue;
-    // const build = builds.find(build => build.buildNumber === +buildNumber);
-    // if (build) {
-    //   this.setState({buildId: build.id})
-    // }
   }
 
   render() {
@@ -37,13 +28,23 @@ class Build extends Component {
           headerView='primary'
         >
           <div className='Header__Action'>
-            <button className='Header__Button Button Button_size_s Button_role_build Button_view_default Button_type_action Button_textVisible'>
-              <RebuildIcon className='Button__Icon Button__Icon_view_primary'/>
-              <span className='Button__Text'>Rebuild</span>
+            <button 
+              className='Header__Button Button Button_size_s Button_role_build Button_view_default Button_type_action Button_textVisible'
+            >
+              <RebuildIcon
+                className='Button__Icon Button__Icon_view_primary'
+              />
+              <span
+                className='Button__Text'
+              >
+               { localize('Header_RebuildButton') }
+              </span>
             </button>
             <Link className='Button Button_size_s Button_role_settings Button_view_default Button_type_action' to='/settings'>
               <SettingsIcon className='Button__Icon Button__Icon_view_primary'/>
-              <span className='Button__Text'>Settings</span>
+              <span className='Button__Text'>
+                { localize('Header_SettingsButton') }
+              </span>
             </Link>
           </div>
         </Header>
@@ -70,6 +71,7 @@ export default connect((state) => {
     build: state.build,
     buildsQueue: state.buildsQueue,
     buildDetails: state.buildDetails,
-    settings: state.settings
+    settings: state.settings,
+    locales: state.locales
   };
 })(Build);

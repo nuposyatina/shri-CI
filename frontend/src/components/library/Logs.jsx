@@ -23,6 +23,7 @@ class Logs extends Component {
 
 export default connect((state) => {
   return {
-    logs: state.logs
+    logs: state.logs,
+    locales: state.locales
   };
 })(Logs);

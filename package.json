@@ -55,6 +55,7 @@
     "library": "./frontend/src/components/library",
     "layouts": "./frontend/src/components/layouts",
     "store": "./frontend/src/store",
-    "img": "./frontend/src/img"
+    "img": "./frontend/src/img",
+    "lib": "./frontend/src/utils"
   }
 }

@@ -5,6 +5,7 @@ import Footer from 'library/Footer';
 import SettingsPreview from 'library/SettingsPreview';
 import { Link } from 'react-router-dom';
 import SettingsIcon from 'img/settings.svg';
+import { localize } from 'lib';
 
 export default () => {
   return (
@@ -13,9 +14,14 @@ export default () => {
         headerText='School CI server'
         headerView='secondary'
       >
-        <Link className='Button Button_size_s Button_role_settings Button_view_default Button_textVisible Button_type_action' to='/settings'>
+        <Link
+          className='Button Button_size_s Button_role_settings Button_view_default Button_textVisible Button_type_action'
+          to='/settings'
+        >
           <SettingsIcon className='Button__Icon Button__Icon_view_primary'/>
-          <span className='Button__Text'>Settings</span>
+          <span className='Button__Text'>
+            { localize('Header_SettingsButton') }
+          </span>
         </Link>
       </Header>
       <Layout>
