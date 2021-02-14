@@ -14,9 +14,12 @@ const agent = new https.Agent({
 })
 const { AUTH_TOKEN } = require('dotenv').config().parsed;
 
-app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  const { origin } = req.headers;
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 });

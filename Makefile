@@ -2,7 +2,14 @@ install:
 	yarn install
 
 client:
+	mkdir -p dist/
+	cp frontend/src/sw.js dist/
 	yarn start
+
+build-client:
+	mkdir -p dist/
+	cp frontend/src/sw.js dist/
+	yarn build
 
 server:
 	node backend/server.js
